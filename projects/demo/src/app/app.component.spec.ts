@@ -1,12 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {routes} from './app.routes';
+import {Router} from '@angular/router';
+import {HomeModule} from './pages/home/home.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes(routes),
+        HomeModule,
       ],
       declarations: [
         AppComponent
@@ -26,10 +30,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('demo');
   });
 
-  it('should render title', () => {
+  it('should render title', async () => {
     const fixture = TestBed.createComponent(AppComponent);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('demo app is running!');
+    expect(compiled.querySelector('.project-tagline')?.textContent).toContain('Smart data table library');
   });
 });
