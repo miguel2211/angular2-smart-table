@@ -5,6 +5,7 @@ This document lists the changes introduced by this fork.
 ## Version 2.1
 
 * Angular 13 support (thanks [stephanrau](https://github.com/stephanrauh))
+* Fixes default filter function not working when column contains null values (issue #32)
 
 ## Version 2.0
 
