@@ -6,6 +6,8 @@ This document lists the changes introduced by this fork.
 
 * Angular 13 support (thanks [stephanrau](https://github.com/stephanrauh))
 * Fixes default filter function not working when column contains null values (issue #32)
+* Fixes default sort function producing invalid results when column contains null values (issue #34)
+* Default sort function can now recognize numbers and strings
 
 ## Version 2.0
 
