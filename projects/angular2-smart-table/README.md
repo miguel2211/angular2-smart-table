@@ -5,7 +5,11 @@
 
 I'm a self-employed developer so any help is welcome, open a pull request and help me improve this library
 
+
+
 ## NEW Features
+
+* 🚀 Added hide/show row  
 * 🚀 Added Expandable Row (thanks [Samir](https://github.com/mominsamir))
 * 🚀 Added Column resizing (thanks [dreswgfuse](https://github.com/dreswgfuse))
 * 🚀 Added Multi Select for a column (thanks [thangluu93](https://github.com/thangluu93))
@@ -17,8 +21,8 @@ I'm a self-employed developer so any help is welcome, open a pull request and he
 * 🚀 Include row data when invoking filterFunction (thanks [darrenhollick](https://github.com/darrenhollick))
 * 🚀 Ability to select a row programmatically (thanks [NicolaLC](https://github.com/NicolaLC))
 
-
 ## Features
+
 * Local data source (Server/API DataSource is on its way)
 * Filtering
 * Sorting
