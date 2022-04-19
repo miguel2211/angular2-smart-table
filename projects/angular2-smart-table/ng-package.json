@@ -3,10 +3,6 @@
   "dest": "../../dist/angular2-smart-table",
   "assets": ["CHANGELOG.md", "README.md", "LICENSE.txt"],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "lodash-es": "lodash-es",
-      "ng2-completer": "ng2-completer"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

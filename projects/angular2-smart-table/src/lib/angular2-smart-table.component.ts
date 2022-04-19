@@ -260,7 +260,7 @@ export class Angular2SmartTableComponent {
   }
 
   getNotVisibleColumns(): Array<IColumn> {
-    return (this.grid.getColumns() || []).filter((column: IColumn) => column.hide);
+    return (this.grid?.getColumns() ?? []).filter((column: IColumn) => column.hide);
   }
 
   toggleColumnVisibility(columnId: string) {
