@@ -26,7 +26,6 @@ export class DefaultFilter implements Filter, OnDestroy {
   }
 
   setFilter() {
-    console.log("DefaultFilter");
     this.filter.emit(this.query);
   }
 }

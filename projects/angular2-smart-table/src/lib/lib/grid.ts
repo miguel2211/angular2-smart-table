@@ -204,7 +204,6 @@ export class Grid {
           this.onSelectRowSource.next(row);
         }
         catch (e) {
-          console.log(e);
           this.onDeselectRowSource.next(null);
         }
       }

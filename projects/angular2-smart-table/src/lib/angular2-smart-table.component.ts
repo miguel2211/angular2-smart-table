@@ -109,7 +109,6 @@ export class Angular2SmartTableComponent {
   private destroyed$: Subject<void> = new Subject<void>();
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-    console.log('changes detected in angular2-smart-table');
     if (this.grid) {
       if (changes['settings']) {
         this.grid.setSettings(this.prepareSettings());

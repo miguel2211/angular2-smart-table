@@ -116,7 +116,6 @@ export class NgxSmartTableTbodyComponent implements AfterViewInit, OnDestroy {
   }
 
   onExpandRowClick(row: Row) {
-    console.log('onExpandRowClick');
     this.onExpandRow.emit(row);
   }
 }

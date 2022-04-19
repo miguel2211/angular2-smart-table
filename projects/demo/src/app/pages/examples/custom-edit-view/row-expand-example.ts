@@ -7,23 +7,23 @@ import { Component, OnInit, Input } from '@angular/core';
       <table>
         <thead>
           <tr>
-            <th>Id</th>          
+            <th>Id</th>
             <th>Name</th>
             <th>Email</th>
             <th>User Name</th>
             <th>inner Action</th>
- 
+
             </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{ rowData?.id }}</td>          
+            <td>{{ rowData?.id }}</td>
             <td>{{ rowData?.name }}</td>
             <td>{{ rowData?.email }}</td>
             <td>{{ rowData?.username }}</td>
             <td><button (click)="onClick()">click me</button></td>
           </tr>
-        </tbody>        
+        </tbody>
       </table>
     </div>
   `,
@@ -34,7 +34,6 @@ export class DivViewComponent {
 
 
   onClick() {
-    console.log('onClick');
     alert(this.rowData.name);
   }
 }

@@ -24,7 +24,6 @@ export class CustomFilterComponent extends FilterDefault implements OnChanges, O
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes, this.column, this.customComponent);
     if (this.column && !this.customComponent) {
       const filter = this.column.filter;
       if (!filter) {
@@ -38,7 +37,7 @@ export class CustomFilterComponent extends FilterDefault implements OnChanges, O
       this.customComponent.instance.column = this.column;
       this.customComponent.instance.source = this.source;
       this.customComponent.instance.inputClass = this.inputClass;
-      this.customComponent.instance.filter.subscribe((event: any) => { console.log(this, event); this.onFilter(event)});
+      this.customComponent.instance.filter.subscribe((event: any) => { this.onFilter(event)});
     }
     if (this.customComponent) {
       this.customComponent.instance.ngOnChanges(changes);
