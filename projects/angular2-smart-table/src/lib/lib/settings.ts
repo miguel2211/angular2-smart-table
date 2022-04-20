@@ -46,10 +46,7 @@ export enum IColumnType {
   Custom = "custom"
 }
 
-export enum ISortDirection {
-  ASC = "asc",
-  DESC = "desc"
-}
+export type ISortDirection = 'asc' | 'desc';
 
 export type ColumnValuePrepareFunction = (cellValue: any, row: any, cell: Cell) => any;
 export type ColumnFilterFunction = (cellValue: any, searchString: string, rowData: any, cellName: string, row: any) => void;

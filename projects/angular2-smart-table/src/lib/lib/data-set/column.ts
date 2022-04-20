@@ -1,5 +1,5 @@
-import { ColumnFilterFunction, ColumnValuePrepareFunction, IColumn, IColumnType, ISortDirection } from '../settings';
-import { DataSet } from './data-set';
+import {ColumnFilterFunction, ColumnValuePrepareFunction, IColumn, IColumnType, ISortDirection} from '../settings';
+import {DataSet} from './data-set';
 
 export class Column implements IColumn {
 
@@ -13,10 +13,10 @@ export class Column implements IColumn {
   isEditable?: boolean = true;
   isAddable?: boolean = true;
   isFilterable?: boolean = false;
-  sortDirection?: ISortDirection = ISortDirection.ASC;
-  defaultSortDirection?: string = '';
-  editor?: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
-  filter?: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
+  sortDirection: ISortDirection = 'asc';
+  defaultSortDirection?: ISortDirection = undefined;
+  editor?: { type: string, config: any, component: any } = {type: '', config: {}, component: null};
+  filter?: { type: string, config: any, component: any } = {type: '', config: {}, component: null};
   renderComponent?: any = null;
   compareFunction?: Function;
   valuePrepareFunction?: ColumnValuePrepareFunction;
@@ -67,12 +67,12 @@ export class Column implements IColumn {
     this.renderComponent = this.settings['renderComponent'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
-    this.defaultSortDirection = ['asc', 'desc']
-      .indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
     this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['isEditable'] === 'undefined' ? true : !!this.settings['isEditable'];
     this.isAddable = typeof this.settings['isAddable'] === 'undefined' ? true : !!this.settings['isAddable'];
-    this.sortDirection = this.prepareSortDirection();
+    if (typeof this.settings['sortDirection'] !== 'undefined') {
+      this.sortDirection = this.defaultSortDirection = this.settings['sortDirection'];
+    }
 
     this.compareFunction = this.settings['compareFunction'];
     this.valuePrepareFunction = this.settings['valuePrepareFunction'];
@@ -82,10 +82,6 @@ export class Column implements IColumn {
 
   prepareType(): IColumnType {
     return this.settings['type'] || this.determineType();
-  }
-
-  prepareSortDirection(): ISortDirection {
-    return this.settings['sort'] === ISortDirection.DESC ? ISortDirection.DESC : ISortDirection.ASC;
   }
 
   determineType(): IColumnType {
