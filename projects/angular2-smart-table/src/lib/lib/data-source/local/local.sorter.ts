@@ -1,4 +1,4 @@
-export function defaultNumberComparator(direction: number, left: number | null, right: number | null): number {
+export function defaultObjectComparator(direction: number, left: any, right: any): number {
   if (left == null && right == null) {
     return 0;
   }
@@ -11,6 +11,11 @@ export function defaultNumberComparator(direction: number, left: number | null, 
   }
   // none of them can be null now, and they must be equal
   return 0;
+}
+
+export function defaultNumberComparator(direction: number, left: number | null, right: number | null): number {
+  // the default comparator already does what we want, so this function is merely a type-safe alias
+  return defaultObjectComparator(direction, left, right);
 }
 
 export function defaultStringComparator(direction: number, left: string | null, right: string | null): number {
@@ -26,11 +31,11 @@ export function defaultStringComparator(direction: number, left: string | null, 
 }
 
 /**
- * Compares two values interpreting them as numbers or strings.
+ * Compares two values with special treatment for numbers and strings.
  *
  * The rule is: if both values are of type number (or null), they are compared as if they were numbers.
- * Otherwise, they are compared is if they were strings. If the type is string but the content is a number, the value
- * is still compared as a string.
+ * If both values are either null, undefined or typeof string, they are compared as strings using the current locale.
+ * Otherwise, they are compared using their natural ordering.
  *
  * Null values are considered less than any non-null element. Null and undefined are considered equal.
  *
@@ -41,10 +46,14 @@ export function defaultStringComparator(direction: number, left: string | null, 
 export function defaultComparator(direction: any, left: any, right: any) {
   const leftIsNumeric = left == null || !isNaN(parseFloat(left));
   const rightIsNumeric = right == null || !isNaN(parseFloat(right));
+  const leftIsString = left == null || (typeof left === 'string');
+  const rightIsString = right == null || (typeof right === 'string');
   if (leftIsNumeric && rightIsNumeric) {
     return defaultNumberComparator(direction, Number(left), Number(right));
+  } else if (leftIsString && rightIsString) {
+    return defaultStringComparator(direction, left, right);
   } else {
-    return defaultStringComparator(direction, String(left), String(right));
+    return defaultObjectComparator(direction, left, right);
   }
 }
 
