@@ -38,7 +38,7 @@ export class TheadTitlesRowComponent implements OnChanges {
   showActionColumnLeft!: boolean;
   showActionColumnRight!: boolean;
   isResizable!: boolean;
-  isHideable: boolean = false;;
+  isHideable: boolean = false;
 
 
   ngOnChanges() {
