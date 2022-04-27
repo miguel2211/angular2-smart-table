@@ -9,6 +9,7 @@ This document lists the changes introduced by this fork.
 * Fixes default sort function producing invalid results when column contains null values (issue #34)
 * Default sort function can now recognize numbers and strings
 * Fixes spelling error regarding `sortDirection` setting (issue #36)
+* Add compatibility for deprecated settings keys (issue #30)
 
 ## Version 2.0
 

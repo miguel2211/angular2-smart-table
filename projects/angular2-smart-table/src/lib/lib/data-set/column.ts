@@ -3,13 +3,13 @@ import {DataSet} from './data-set';
 
 export class Column implements IColumn {
 
-  placeholder: string = '';
+  placeholder?: string;
   title: string = '';
   hide: boolean = false;
   type?: IColumnType = IColumnType.Text;
   class?: string = '';
   width?: string = '';
-  isSortable?: boolean = false;
+  isSortable?: boolean = true;
   isEditable?: boolean = true;
   isAddable?: boolean = true;
   isFilterable?: boolean = false;
@@ -55,33 +55,50 @@ export class Column implements IColumn {
     return this.filter && this.filter.config;
   }
 
-  protected process() {
-    this.placeholder = this.settings['placeholder'];
-    this.title = this.settings['title'];
-    this.class = this.settings['class'];
-    this.width = this.settings['width'];
-    this.hide = !!this.settings['hide'];
-    this.type = this.prepareType();
-    this.editor = this.settings['editor'];
-    this.filter = this.settings['filter'];
-    this.renderComponent = this.settings['renderComponent'];
-
-    this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
-    this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
-    this.isEditable = typeof this.settings['isEditable'] === 'undefined' ? true : !!this.settings['isEditable'];
-    this.isAddable = typeof this.settings['isAddable'] === 'undefined' ? true : !!this.settings['isAddable'];
-    if (typeof this.settings['sortDirection'] !== 'undefined') {
-      this.sortDirection = this.defaultSortDirection = this.settings['sortDirection'];
+  /**
+   * Retrieves a setting by name.
+   *
+   * @param key the current key name
+   * @param compatKeys key names for backwards compatibility
+   * @private
+   */
+  private lookupSetting<T>(key: string, compatKeys: string[] = []): T | undefined {
+    if (typeof this.settings[key] === undefined) {
+      for (const k of compatKeys) {
+        if (typeof this.settings[k] !== undefined) {
+          return this.settings[k];
+        }
+      }
+      return undefined;
+    } else {
+      return this.settings[key] as T;
     }
-
-    this.compareFunction = this.settings['compareFunction'];
-    this.valuePrepareFunction = this.settings['valuePrepareFunction'];
-    this.filterFunction = this.settings['filterFunction'];
-    this.onComponentInitFunction = this.settings['onComponentInitFunction'];
   }
 
-  prepareType(): IColumnType {
-    return this.settings['type'] || this.determineType();
+  protected process() {
+    // the pattern is "X = lookup(key) ?? X" - this keeps the default value in case the setting is undefined
+
+    this.placeholder = this.lookupSetting('placeholder');
+    this.title = this.lookupSetting('title') ?? this.title;
+    this.class = this.lookupSetting('class') ?? this.class;
+    this.width = this.lookupSetting('width') ?? this.width;
+    this.hide = this.lookupSetting('hide') ?? this.hide;
+    this.type = this.lookupSetting('type') ?? this.determineType();
+    this.editor = this.lookupSetting('editor') ?? this.editor;
+    this.filter = this.lookupSetting('filter') ?? this.filter;
+    this.renderComponent = this.lookupSetting('renderComponent') ?? this.renderComponent;
+
+    this.isFilterable = this.filter !== undefined;
+    this.isSortable = this.lookupSetting('isSortable', ['sort']) ?? this.isSortable;
+    this.isEditable = this.lookupSetting('isEditable', ['editable']) ?? this.isEditable;
+    this.isAddable = this.lookupSetting('isAddable') ?? this.isAddable;
+    this.defaultSortDirection = this.lookupSetting('sortDirection') ?? this.defaultSortDirection;
+    this.sortDirection = this.defaultSortDirection ?? this.sortDirection;
+
+    this.compareFunction = this.lookupSetting('compareFunction');
+    this.valuePrepareFunction = this.lookupSetting('valuePrepareFunction');
+    this.filterFunction = this.lookupSetting('filterFunction');
+    this.onComponentInitFunction = this.lookupSetting('onComponentInitFunction');
   }
 
   determineType(): IColumnType {

@@ -101,7 +101,17 @@
       <td><span class="highlight">boolean</span></td>
       <td>true</td>
       <td>
-        Whether this column is editable or not
+        Whether this column is editable or not. If this is false you can still enter a value when you add
+        a new row. Use the <span class="highlight">isAddable</span> setting to control the behavior when adding a new row.
+        Note: the deprecated alias for this setting is <span class="highlight">editable</span>.
+      </td>
+    </tr>
+    <tr>
+      <td>isAddable</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Whether you can enter a value in this column when adding a new row.
       </td>
     </tr>
     <tr>
@@ -111,7 +121,7 @@
       <td>
         If type is <span class="highlight">text</span> then cell value will be inserted as text.<br>
         If type is <span class="highlight">html</span> then cell value will be inserted as html.<br>
-        If type is <span class="highlight">custom</span> the <code>renderComponent</code> property must be defined.
+        If type is <span class="highlight">custom</span> the <span class="highlight">renderComponent</span> property must be defined.
       </td>
     </tr>
     <tr>
@@ -137,19 +147,19 @@
       <td><span class="highlight">any</span></td>
       <td>null</td>
       <td>
-        Any angular component to be displayed inside expanded row, 
-        this will automatically show button on action column if any component is provided via setting. 
-        Component will have row data passed and assigned to its variable <span class="highlight">rowData</span> 
+        Any angular component to be displayed inside expanded row,
+        this will automatically show button on action column if any component is provided via setting.
+        Component will have row data passed and assigned to its variable <span class="highlight">rowData</span>
       </td>
-    </tr>        
+    </tr>
     <tr>
       <td>expand.expandRowButtonContent</td>
       <td><span class="highlight">HTML</span></td>
       <td>'Expand'</td>
       <td>
-        Inner HTML to display in anchor tag 
+        Inner HTML to display in anchor tag
       </td>
-    </tr>    
+    </tr>
     <tr>
       <td>editor</td>
       <td><span class="highlight">Object</span></td>
@@ -280,11 +290,12 @@
       </td>
     </tr>
     <tr>
-      <td>sort</td>
+      <td>isSortable</td>
       <td><span class="highlight">boolean</span></td>
       <td>true</td>
       <td>
         Column sort settings, enable/disable.
+        Note: the deprecated alias for this setting is <span class="highlight">sort</span>.
       </td>
     </tr>
     <tr>
