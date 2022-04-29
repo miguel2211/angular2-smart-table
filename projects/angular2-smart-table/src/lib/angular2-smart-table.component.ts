@@ -279,7 +279,6 @@ export class Angular2SmartTableComponent {
   }
 
   private emitUserSelectRow(row: Row | null) {
-    if (!row) return;
     const selectedRows = this.grid.getSelectedRows();
 
     this.userRowSelect.emit({
@@ -291,7 +290,6 @@ export class Angular2SmartTableComponent {
   }
 
   private emitSelectRow(row: Row | null) {
-    if (!row) return;
     const data = {
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
