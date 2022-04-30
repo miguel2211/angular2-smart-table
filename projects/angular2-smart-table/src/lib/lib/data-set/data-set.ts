@@ -22,8 +22,17 @@ export class DataSet {
   setData(data: Array<any>, selectedRows: Array<Row> = []) {
     const rows: Array<Row> = [...selectedRows];
     data.map((el: any, index: number) => {
-      const row = new Row( selectedRows.length + index, el, this);
-      rows.push(row);
+      //  if Object el is not in selectedRows then push it to rows
+      let isSelected = false;
+      for( const row of selectedRows) {
+        if (JSON.stringify(row.getData()) === JSON.stringify(el)) {
+          isSelected = true
+          break;
+        }
+      }
+      if (!isSelected) {
+        rows.push(new Row(index, el, this));
+      }
     });
     this.data = rows;
     this.createRows();
