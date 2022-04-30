@@ -2,6 +2,10 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.2
+
+* Finally the project got more mantainers!
+
 ## Version 2.1
 
 * Angular 13 support (thanks [stephanrau](https://github.com/stephanrauh))
