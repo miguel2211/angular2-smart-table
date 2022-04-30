@@ -11,7 +11,8 @@
     "docs:gh-pages": "npm run build:demo -- --base-href /angular2-smart-table/ && npm run deploy:gh-pages",
     "deploy:gh-pages": "ngh --dir ./dist/demo",
     "test": "ng test",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "publish": "npm publish --access=public ./dist/angular2-smart-table"
   },
   "private": true,
   "dependencies": {
