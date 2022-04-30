@@ -2,6 +2,11 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.2.1
+
+* Fixes duplicate rows when the row is already selected
+* Updates dependencies
+
 ## Version 2.2
 
 * Finally the project got more mantainers!
