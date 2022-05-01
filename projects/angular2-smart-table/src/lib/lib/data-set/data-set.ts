@@ -19,21 +19,12 @@ export class DataSet {
     this.createNewRow();
   }
 
-  setData(data: Array<any>, selectedRows: Array<Row> = []) {
-    const rows: Array<Row> = [...selectedRows];
-    data.map((el: any, index: number) => {
-      //  if Object el is not in selectedRows then push it to rows
-      let isSelected = false;
-      for( const row of selectedRows) {
-        if (JSON.stringify(row.getData()) === JSON.stringify(el)) {
-          isSelected = true
-          break;
-        }
-      }
-      if (!isSelected) {
-        rows.push(new Row(index, el, this));
-      }
-    });
+  setData(data: Array<any>, selectedRows: Array<any> = []) {
+    const rows: Array<Row> = data.map((el, index) => {
+      const row = new Row(index, el, this);
+      row.isSelected = selectedRows.indexOf(el) > -1;
+      return row;
+    })
     this.data = rows;
     this.createRows();
   }

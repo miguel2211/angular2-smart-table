@@ -97,10 +97,12 @@ export class Grid {
 
   selectRow(row: Row) {
     this.dataSet.selectRow(row);
+    this.source.toggleItem(row.getData(), row.isSelected);
   }
 
   multipleSelectRow(row: Row) {
     this.dataSet.multipleSelectRow(row);
+    this.source.toggleItem(row.getData(), row.isSelected);
   }
 
   onSelectRow(): Observable<any> {
@@ -197,7 +199,7 @@ export class Grid {
 
   processDataChange(changes: any) {
     if (this.shouldProcessChange(changes)) {
-       this.dataSet.setData(changes['elements'], this.getSelectedRows());
+       this.dataSet.setData(changes['elements'], this.getSelectedItems());
       if (this.getSetting('selectMode') !== 'multi') {
         try {
           const row = this.determineRowToSelect(changes);
@@ -291,9 +293,14 @@ export class Grid {
       .filter(r => r.isSelected);
   }
 
-  selectAllRows(status: boolean) {
+  getSelectedItems(): Array<any> {
+    return this.source.getSelectedItems();
+  }
+
+  async selectAllRows(status: boolean) {
     this.dataSet.getRows()
       .forEach(r => r.isSelected = status);
+    await this.source.selectAllItems(status);
   }
 
   getFirstRow(): Row {

@@ -14,6 +14,9 @@ export abstract class DataSource {
   abstract getFilter(): any;
   abstract getPaging(): any;
   abstract count(): number;
+  abstract toggleItem(row: any, isSelected: boolean): void;
+  abstract selectAllItems(checked: boolean): Promise<void>;
+  abstract getSelectedItems(): Array<any>;
 
   refresh() {
     this.emitOnChanged('refresh');
