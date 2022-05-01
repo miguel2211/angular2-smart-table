@@ -291,7 +291,7 @@ export class Grid {
       .filter(r => r.isSelected);
   }
 
-  selectAllRows(status: any) {
+  selectAllRows(status: boolean) {
     this.dataSet.getRows()
       .forEach(r => r.isSelected = status);
   }
