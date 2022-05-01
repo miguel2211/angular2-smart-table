@@ -199,9 +199,9 @@ export class Angular2SmartTableComponent {
     this.emitSelectRow(row);
   }
 
-  onSelectAllRows($event: any) {
+  async onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
-    this.grid.selectAllRows(this.isAllSelected);
+    await this.grid.selectAllRows(this.isAllSelected);
 
     this.emitUserSelectRow(null);
     this.emitSelectRow(null);
@@ -275,17 +275,19 @@ export class Angular2SmartTableComponent {
   }
 
   private resetAllSelector() {
-    this.isAllSelected = false;
+    // this.isAllSelected = false;
   }
 
   private emitUserSelectRow(row: Row | null) {
     const selectedRows = this.grid.getSelectedRows();
+    const selectedItems = this.grid.getSelectedItems();
 
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
       selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
+      selectedItems,
     });
   }
 

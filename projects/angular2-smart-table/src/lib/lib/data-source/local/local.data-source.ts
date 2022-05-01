@@ -15,6 +15,7 @@ export class LocalDataSource extends DataSource {
   };
   protected pagingConf: any = {};
 
+  private selectedItems: Array<any> = [];
   constructor(data: Array<any> = []) {
     super();
 
@@ -110,6 +111,22 @@ export class LocalDataSource extends DataSource {
 
   count(): number {
     return this.filteredAndSorted.length;
+  }
+
+  toggleItem(row: any, isSelected: boolean): void {
+    if (isSelected) this.selectedItems.push(row);
+    else this.selectedItems = this.selectedItems.filter((i) => i !== row);
+  }
+
+  async selectAllItems(checked: boolean): Promise<void> {
+    if (checked) {
+      const allItems = await this.getAll();
+      this.selectedItems = allItems.slice(0);
+    } else this.selectedItems = [];
+  }
+
+  getSelectedItems(): Array<any> {
+    return this.selectedItems;
   }
 
   /**
