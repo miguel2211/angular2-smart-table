@@ -2,6 +2,11 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.3.0
+
+* Fixes a regression where selected rows stick to the top of the table after sorting
+* Fixes a bug where invoking `empty()` on a data source does not result in refreshing the table
+
 ## Version 2.2.1
 
 * Fixes duplicate rows when the row is already selected
