@@ -2,6 +2,10 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.3.1
+
+* Fixes regression: `filter: false` in a column setting did not work anymore
+
 ## Version 2.3.0
 
 * Fixes a regression where selected rows stick to the top of the table after sorting
@@ -14,7 +18,7 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.2
 
-* Finally the project got more mantainers!
+* Finally, the project got more maintainers!
 
 ## Version 2.1
 
