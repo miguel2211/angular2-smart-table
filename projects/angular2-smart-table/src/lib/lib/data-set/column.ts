@@ -88,7 +88,7 @@ export class Column implements IColumn {
     this.filter = this.lookupSetting('filter') ?? this.filter;
     this.renderComponent = this.lookupSetting('renderComponent') ?? this.renderComponent;
 
-    this.isFilterable = this.filter !== undefined;
+    this.isFilterable = this.filter !== undefined && !!this.filter;
     this.isSortable = this.lookupSetting('isSortable', ['sort']) ?? this.isSortable;
     this.isEditable = this.lookupSetting('isEditable', ['editable']) ?? this.isEditable;
     this.isAddable = this.lookupSetting('isAddable') ?? this.isAddable;
