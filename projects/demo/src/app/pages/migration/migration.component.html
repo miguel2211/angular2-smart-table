@@ -1,0 +1,90 @@
+<header-component tagline="Coming from ng2-smart-table"></header-component>
+<section class="main-content">
+
+  <h2>
+    <a id="intro" class="anchor" href="#intro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    Migration Guide
+  </h2>
+  <p>
+    This document is for people who migrate their project from ng2-smart-table to this fork.
+    It contains information about the most significant changes and gives some advice that help
+    integrating this fork into your project.
+  </p>
+  <p>
+    Please consider, that while we are trying to be as compatible as possible, we may have introduced breaking changes.
+    Thus the increase of version number from the latest ng2-smart-table 1.7.2 to 2.x. If you need help for a specific
+    problem, open an <a target="_blank" href="https://github.com/dj-fiorex/angular2-smart-table/issues">Issue</a> on
+    GitHub and we try to help.
+  </p>
+  <p>
+    The recent component documentation including compatibility attributes you can find
+    <a [routerLink]="['/documentation']">here</a>.
+  </p>
+
+  <h3>
+    <a id="styling" class="anchor" href="#styling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    Bring Back the Styling
+  </h3>
+  <p>
+    If you want to stick to the original styling of the smart-table, you can copy the <a href="https://github.com/akveo/nebular/blob/master/src/framework/theme/styles/global/tables/_smart-table.theme.scss" target="_blank">original SCSS file</a>
+    into your project and replace the <code>ng2-</code> prefix of the selectors with <code>angular2-</code>.
+    There is no guarantee that this results in a perfect replica of the original styling, but it may come a lot more closer.
+  </p>
+
+  <h3>
+    <a id="setting-keys" class="anchor" href="#setting-keys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    Setting Keys
+  </h3>
+  This Section describes the changes to the settings object.
+  <h4>
+    <a id="setting-keys-deprecated" class="anchor" href="#setting-keys-deprecated" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    Deprecated
+  </h4>
+  <p>
+    The following setting keys are deprecated, but still work in the current version:
+  </p>
+  <ul>
+    <li><code>editable</code> is now named <code>isEditable</code></li>
+    <li><code>sort</code> is now named <code>isSortable</code></li>
+  </ul>
+  We advise you to change the setting keys as soon as possible. We do not plan on removing the deprecated keys anytime
+  soon, but things may change in the future.
+  <h4>
+    <a id="setting-keys-new" class="anchor" href="#setting-keys-new" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    New Settings
+  </h4>
+  <p>
+    <code>isAddable</code> - This flag works like <code>isEditable</code> (formerly <code>editable</code>) but affects
+    the cell in the row that is displayed when adding a new item (inline mode only).
+    The <code>isEditable</code> flag on the other hand has no effect on the "add" row.
+    This way you can control whether an attribute shall be immutable once it has been added.
+  </p>
+  <p>
+    <code>expandedRowComponent</code> and <code>expand</code> - With these settings you can enable and configure
+    an additional action button to expand rows into full blown angular components that are displayed next to the
+    expanded row. Read the <a [routerLink]="['/documentation']">documentation</a> for details.
+  </p>
+  <p>
+    <code>editor.config.disableEnterKeySave</code> - By default, hitting ENTER in text, textarea, or select editor,
+    the row is submitted. This behavior can be disabled via this new setting.
+  </p>
+  <p>
+    <code>hideable</code> - Controls whether columns can be hidden by the user.
+  </p>
+  <p>
+    <code>resizable</code> - Controls whether columns can be resized by the user.
+    This is currently experimental and may not work smoothly in all environments.
+  </p>
+
+  <h3>
+    <a id="fixed-bugs" class="anchor" href="#fixed-bugs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    Fixed Bugs
+  </h3>
+  <p>
+    The documentation of the method <code>DataSource.count()</code> says to return the number of elements
+    in the data source. But the <code>LocalDataSource</code> returned the number of filtered elements.
+    The <code>ServerDataSource</code> on the other hand did not do that.
+    For compatibility we fixed this bug by introducing an argument for <code>count()</code> with which you can
+    decide whether you want the total count or the filtered count.
+  </p>
+</section>
