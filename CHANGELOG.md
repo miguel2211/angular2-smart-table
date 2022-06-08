@@ -7,6 +7,7 @@ This document lists the changes introduced by this fork.
 * Fixes inconsistent `DataSource.count()` implementations
 * Fixes "Expand" button not having a `margin-right`
 * Fixes multi-select column having an undefined width
+* Fixes wrong colspan for `noDataMessage` and expanded rows when the table has a multi-select column
 
 ## Version 2.3.1
 
