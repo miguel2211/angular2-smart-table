@@ -4,7 +4,8 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.4.0
 
-* Fixes inconsistent `DataSource.count()` implementations 
+* Fixes inconsistent `DataSource.count()` implementations
+* Fixes "Expand" button not having a `margin-right`
 
 ## Version 2.3.1
 
