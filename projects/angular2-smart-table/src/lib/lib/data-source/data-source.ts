@@ -13,7 +13,7 @@ export abstract class DataSource {
   abstract getSort(): any;
   abstract getFilter(): any;
   abstract getPaging(): any;
-  abstract count(): number;
+  abstract count(total?: boolean): number;
   abstract toggleItem(row: any, isSelected: boolean): void;
   abstract selectAllItems(checked: boolean): Promise<void>;
   abstract getSelectedItems(): Array<any>;

@@ -109,8 +109,9 @@ export class LocalDataSource extends DataSource {
     return super.empty();
   }
 
-  count(): number {
-    return this.filteredAndSorted.length;
+  count(total: boolean = false): number {
+    // note: we don't have to prepare the data, because we may assume that this is already done
+    return total ? this.data.length : this.filteredAndSorted.length;
   }
 
   toggleItem(row: any, isSelected: boolean): void {

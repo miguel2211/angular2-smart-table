@@ -23,8 +23,9 @@ export class ServerDataSource extends LocalDataSource {
     }
   }
 
-  count(): number {
-    return this.lastRequestCount;
+  count(total: boolean = false): number {
+    // note: in contrast to the local data source, the data array contains the (server-side) filtered data
+    return total ? this.lastRequestCount : this.data.length;
   }
 
   getElements(): Promise<any> {
@@ -70,11 +71,11 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    let httpParams = this.createRequesParams();
+    let httpParams = this.createRequestParams();
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
-  protected createRequesParams(): HttpParams {
+  protected createRequestParams(): HttpParams {
     let httpParams = new HttpParams();
 
     httpParams = this.addSortRequestParams(httpParams);

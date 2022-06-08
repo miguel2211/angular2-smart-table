@@ -2,6 +2,10 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.4.0
+
+* Fixes inconsistent `DataSource.count()` implementations
+
 ## Version 2.3.1
 
 * Fixes regression: `filter: false` in a column setting did not work anymore
