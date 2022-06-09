@@ -135,14 +135,6 @@
       </td>
     </tr>
     <tr>
-      <td>onComponentInitFunction</td>
-      <td><span class="highlight">Function</span></td>
-      <td>null</td>
-      <td>
-        Function which will be invoked after <span class="highlight">renderComponent</span> instantiated and before ngOnInit hook. This function gets <span class="highlight">renderComponent</span> instance in first param and the <span class="highlight">ViewCell</span> as second param.
-      </td>
-    </tr>
-    <tr>
       <td>expandedRowComponent</td>
       <td><span class="highlight">any</span></td>
       <td>null</td>
@@ -157,7 +149,15 @@
       <td><span class="highlight">HTML</span></td>
       <td>'Expand'</td>
       <td>
-        Inner HTML to display in anchor tag
+        Expand row button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>onComponentInitFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>null</td>
+      <td>
+        Function which will be invoked after <span class="highlight">renderComponent</span> instantiated and before ngOnInit hook. This function gets <span class="highlight">renderComponent</span> instance in first param and the <span class="highlight">ViewCell</span> as second param.
       </td>
     </tr>
     <tr>
@@ -170,10 +170,19 @@
     </tr>
     <tr>
       <td><span class="nested-obj">editor</span>.type</td>
-      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom'</span></td>
       <td>'text'</td>
       <td>
-        Editor used when new row is added or edited
+        Editor used when new row is added or edited. When <span class="highlight">custom</span> is selected, you need to specify
+        <span class="highlight">editor.component</span>.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.component</td>
+      <td><span class="highlight">any</span></td>
+      <td>undefined</td>
+      <td>
+        The Angular component for the editor when using type <span class="highlight">custom</span>.
       </td>
     </tr>
     <tr>
