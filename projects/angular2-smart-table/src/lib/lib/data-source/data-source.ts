@@ -10,6 +10,7 @@ export abstract class DataSource {
 
   abstract getAll(): Promise<any>;
   abstract getElements(): Promise<any>;
+  abstract getFilteredAndSorted(): Promise<any>;
   abstract getSort(): any;
   abstract getFilter(): any;
   abstract getPaging(): any;

@@ -87,4 +87,13 @@
     For compatibility we fixed this bug by introducing an argument for <code>count()</code> with which you can
     decide whether you want the total count or the filtered count.
   </p>
+  <p>
+    <span class="highlight">ServerDataSource</span> - The behavior of the methods <code>getFilteredAndSorted()</code>
+    and <code>getAll()</code> is fixed. Previously, these methods were inherited from <code>LocalDataSource</code>
+    and returned the elements based on the <code>data</code> array within the data source. But in case of the the
+    <code>ServerDataSource</code> this array is already filtered, sorted, and paginated. The new implementation
+    updates the contents of the data source with the correct data by submitting the correct request. That also means,
+    that you now have to be a bit careful when using <code>getAll()</code> with an <code>ServerDataSource</code> if
+    the server stores a lot of data, because now you <em>really</em> get all the data.
+  </p>
 </section>

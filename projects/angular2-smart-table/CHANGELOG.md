@@ -4,6 +4,8 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.4.0
 
+* Adds `getFilteredAndSorted()` to the interface of `DataSource`
+* Fixes `getFilteredAndSorted()` and `getAll()` of `ServerDataSource`
 * Fixes inconsistent `DataSource.count()` implementations
 * Fixes "Expand" button not having a `margin-right`
 * Fixes multi-select column having an undefined width
