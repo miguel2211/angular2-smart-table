@@ -130,16 +130,6 @@ export class LocalDataSource extends DataSource {
     return this.selectedItems;
   }
 
-  /**
-   *
-   * Array of conf objects
-   * [
-   *  {field: string, direction: asc|desc|null, compare: Function|null},
-   * ]
-   * @param conf
-   * @param doEmit
-   * @returns {LocalDataSource}
-   */
   setSort(conf: Array<any>, doEmit = true): LocalDataSource {
     if (conf !== null) {
 
