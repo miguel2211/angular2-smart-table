@@ -123,4 +123,5 @@ export interface Pager {
 export interface CustomAction {
   name: string;
   title: string;
+  renderComponent?: any;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {CustomAction} from 'angular2-smart-table';
 
 @Component({
   selector: 'basic-example-custom-actions-item',
@@ -9,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BasicExampleCustomActionsItemComponent implements OnInit {
   renderValue!: string;
 
-  @Input() action: any;
+  @Input() action!: CustomAction;
   @Input() rowData: any;
 
   ngOnInit() {

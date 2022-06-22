@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Row } from '../../../lib/data-set/row';
+import {CustomAction} from '../../../lib/settings';
 
 @Component({
   selector: 'angular2-st-tbody-custom-item',
@@ -10,7 +11,7 @@ import { Row } from '../../../lib/data-set/row';
 export class TbodyCustomItemComponent implements OnInit {
 
   customComponent: any;
-  @Input() action: any;
+  @Input() action!: CustomAction;
   @Input() row!: Row;
   @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
 

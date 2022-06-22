@@ -2,6 +2,11 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.5.0
+
+* Fixes missing `renderComponent` in the interface of `CustomAction`
+* Adds missing documentation for `CustomAction`
+
 ## Version 2.4.1
 
 * Include Angular 14 as peer dependency

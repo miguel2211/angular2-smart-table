@@ -2,12 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Row } from '../../../lib/data-set/row';
 
 import { Grid } from '../../../lib/grid';
+import {CustomAction} from '../../../lib/settings';
 
 @Component({
   selector: 'angular2-st-tbody-custom',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *ngFor="let action of grid.getSetting('actions.custom')">
+    <ng-container *ngFor="let action of customActions">
       <a href="#" class="angular2-smart-action angular2-smart-action-custom-custom"
          *ngIf="!action.renderComponent"
          [innerHTML]="action.title"
@@ -29,6 +30,10 @@ export class TbodyCustomComponent {
   @Input() row!: Row;
   @Input() source: any;
   @Output() custom = new EventEmitter<any>();
+
+  get customActions(): CustomAction[] {
+    return this.grid.getSetting('actions.custom') ?? [];
+  }
 
   onCustom(action: any, event: any) {
     event.preventDefault();
