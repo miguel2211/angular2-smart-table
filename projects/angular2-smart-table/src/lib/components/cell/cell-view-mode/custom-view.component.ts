@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  ComponentFactoryResolver,
   ViewChild,
   ViewContainerRef,
   OnInit,
@@ -21,37 +20,19 @@ export class CustomViewComponent implements OnInit, OnDestroy {
 
   customComponent: any;
   @Input() cell!: Cell;
-  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
-
-  constructor(private resolver: ComponentFactoryResolver) {
-  }
+  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget!: ViewContainerRef;
 
   ngOnInit() {
     if (this.cell && !this.customComponent) {
-      this.createCustomComponent();
-      this.callOnComponentInit();
-      this.patchInstance();
+      this.customComponent = this.dynamicTarget.createComponent(this.cell.getColumn().renderComponent);
+      Object.assign(this.customComponent.instance, this.getPatch());
+      const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
+      onComponentInitFunction && onComponentInitFunction(this.customComponent.instance, this.getPatch());
     }
   }
 
   ngOnDestroy() {
-    if (this.customComponent) {
-      this.customComponent.destroy();
-    }
-  }
-
-  protected createCustomComponent() {
-    const componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().renderComponent);
-    this.customComponent = this.dynamicTarget.createComponent(componentFactory);
-  }
-
-  protected callOnComponentInit() {
-    const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
-    onComponentInitFunction && onComponentInitFunction(this.customComponent.instance, this.getPatch());
-  }
-
-  protected patchInstance() {
-    Object.assign(this.customComponent.instance, this.getPatch());
+    this.customComponent.destroy();
   }
 
   protected getPatch(): ViewCell {

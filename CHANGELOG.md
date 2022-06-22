@@ -6,6 +6,7 @@ This document lists the changes introduced by this fork.
 
 * Fixes missing `renderComponent` in the interface of `CustomAction`
 * Adds missing documentation for `CustomAction`
+* Fixes use of deprecated symbols
 
 ## Version 2.4.1
 

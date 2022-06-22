@@ -1,6 +1,5 @@
 import {
   Component,
-  ComponentFactoryResolver,
   ViewChild,
   ViewContainerRef,
   SimpleChanges,
@@ -19,18 +18,13 @@ import { EditCellDefault } from './edit-cell-default';
 export class CustomEditComponent extends EditCellDefault implements OnChanges, OnDestroy {
 
   customComponent: any;
-  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
-
-  constructor(private resolver: ComponentFactoryResolver) {
-    super();
-  }
+  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget!: ViewContainerRef;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.cell && !this.customComponent) {
       const editor = this.cell.getColumn().editor;
       if (!editor) return;
-      const componentFactory = this.resolver.resolveComponentFactory(editor.component);
-      this.customComponent = this.dynamicTarget.createComponent(componentFactory);
+      this.customComponent = this.dynamicTarget.createComponent(editor.component);
 
       // set @Inputs and @Outputs of custom component
       this.customComponent.instance.cell = this.cell;

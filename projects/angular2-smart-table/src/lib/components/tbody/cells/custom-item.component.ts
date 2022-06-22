@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Row } from '../../../lib/data-set/row';
+import {Component, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Row} from '../../../lib/data-set/row';
 import {CustomAction} from '../../../lib/settings';
 
 @Component({
@@ -8,33 +8,23 @@ import {CustomAction} from '../../../lib/settings';
     <ng-template #dynamicTarget></ng-template>
   `,
 })
-export class TbodyCustomItemComponent implements OnInit {
+export class TbodyCustomItemComponent implements OnInit, OnDestroy {
 
   customComponent: any;
   @Input() action!: CustomAction;
   @Input() row!: Row;
-  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
-
-  constructor(private resolver: ComponentFactoryResolver) {
-  }
+  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget!: ViewContainerRef;
 
   ngOnInit() {
-    if (this.action && !this.customComponent) {
-      this.createCustomComponent();
-      this.patchInstance();
-    }
-  }
-
-  protected createCustomComponent() {
-    const componentFactory = this.resolver.resolveComponentFactory(this.action.renderComponent);
-    this.customComponent = this.dynamicTarget.createComponent(componentFactory);
-  }
-
-  protected patchInstance() {
+    this.customComponent = this.dynamicTarget.createComponent(this.action.renderComponent);
     Object.assign(this.customComponent.instance, this.getPatch());
   }
 
-  protected getPatch(): any {
+  ngOnDestroy() {
+    this.customComponent.destroy();
+  }
+
+  protected getPatch() {
     return {
       action: this.action,
       rowData: this.row.getData(),

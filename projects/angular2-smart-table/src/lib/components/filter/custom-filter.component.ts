@@ -1,6 +1,6 @@
 import {
   Component,
-  ComponentFactoryResolver, Input,
+  Input,
   OnChanges,
   OnDestroy,
   SimpleChanges,
@@ -17,11 +17,7 @@ import { FilterDefault } from './filter-default';
 export class CustomFilterComponent extends FilterDefault implements OnChanges, OnDestroy {
   @Input() query!: string;
   customComponent: any;
-  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
-
-  constructor(private resolver: ComponentFactoryResolver) {
-    super();
-  }
+  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget!: ViewContainerRef;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.column && !this.customComponent) {
@@ -29,8 +25,7 @@ export class CustomFilterComponent extends FilterDefault implements OnChanges, O
       if (!filter) {
         return;
       }
-      const componentFactory = this.resolver.resolveComponentFactory(filter.component);
-      this.customComponent = this.dynamicTarget.createComponent(componentFactory);
+      this.customComponent = this.dynamicTarget.createComponent(filter.component);
 
       // set @Inputs and @Outputs of custom component
       this.customComponent.instance.query = this.query;

@@ -1,21 +1,20 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewContainerRef,
-  ComponentFactoryResolver,
-  OnDestroy,
   AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
   QueryList,
-  ViewChildren
+  ViewChildren,
+  ViewContainerRef
 } from '@angular/core';
 
-import { Grid } from '../../lib/grid';
-import { DataSource } from '../../lib/data-source/data-source';
-import { Cell } from '../../lib/data-set/cell';
-import { delay } from 'rxjs/operators';
-import { Row } from '../../lib/data-set/row';
+import {Grid} from '../../lib/grid';
+import {DataSource} from '../../lib/data-source/data-source';
+import {Cell} from '../../lib/data-set/cell';
+import {delay} from 'rxjs/operators';
+import {Row} from '../../lib/data-set/row';
 
 @Component({
   selector: '[angular2-st-tbody]',
@@ -42,13 +41,10 @@ export class NgxSmartTableTbodyComponent implements AfterViewInit, OnDestroy {
   @Output() rowHover = new EventEmitter<Row>();
   @Output() onExpandRow = new EventEmitter<Row>();
 
-  @ViewChildren('expandedRowChild', { read: ViewContainerRef }) expandedRowChild!: QueryList<any>;
+  @ViewChildren('expandedRowChild', { read: ViewContainerRef }) expandedRowChild!: QueryList<ViewContainerRef>;
 
   customComponent: any;
   hasChildComponent: boolean = false;
-
-
-  constructor(private resolver: ComponentFactoryResolver, private vcRef: ViewContainerRef) { }
 
   ngAfterViewInit(): void {
     let cmp = this.grid.settings.expandedRowComponent;
@@ -63,19 +59,14 @@ export class NgxSmartTableTbodyComponent implements AfterViewInit, OnDestroy {
     if (this.customComponent) this.customComponent.destroy();
   }
 
-  clear() {
-    this.vcRef.clear();
-  }
-
   protected createCustomComponent() {
     let cmp = this.grid.settings.expandedRowComponent;
     if (cmp) {
-      const componentFactory = this.resolver.resolveComponentFactory(cmp);
       this.expandedRowChild.changes
         .pipe(delay(0))
-        .subscribe(item => {
-          if (item.length) {
-            this.customComponent = item.first.createComponent(componentFactory);
+        .subscribe((list: QueryList<ViewContainerRef>) => {
+          if (list.length) {
+            this.customComponent = list.first.createComponent(cmp);
             Object.assign(this.customComponent.instance, this.grid.dataSet.expandRow, {
               rowData: this.grid.dataSet.getExpandedRow().getData(),
             });
