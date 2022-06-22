@@ -7,7 +7,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 import { Grid } from './lib/grid';
 import { deepExtend, getPageForRowIndex } from './lib/helpers';
-import { IColumn, SelectModeOptions, Settings } from './lib/settings';
+import { IColumn, Settings } from './lib/settings';
 
 @Component({
   selector: 'angular2-smart-table',

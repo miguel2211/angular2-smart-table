@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SelectModeOptions } from 'angular2-smart-table';
+import {Component} from '@angular/core';
+import {Settings} from 'angular2-smart-table';
 
 @Component({
   selector: 'basic-example-multi-select',
@@ -9,8 +9,8 @@ import { SelectModeOptions } from 'angular2-smart-table';
 })
 export class BasicExampleMultiSelectComponent {
 
-  settings = {
-    selectMode: SelectModeOptions.Multi,
+  settings: Settings = {
+    selectMode: 'multi',
     columns: {
       id: {
         title: 'ID',
