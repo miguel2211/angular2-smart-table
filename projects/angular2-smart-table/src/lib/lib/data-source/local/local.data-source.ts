@@ -1,14 +1,14 @@
-import { LocalSorter } from './local.sorter';
-import { LocalFilter } from './local.filter';
-import { LocalPager } from './local.pager';
-import { DataSource } from '../data-source';
-import { deepExtend } from '../../helpers';
+import {defaultComparator} from './local.sorter';
+import {LocalFilter} from './local.filter';
+import {LocalPager} from './local.pager';
+import {DataSource, ISortConfig} from '../data-source';
+import {deepExtend} from '../../helpers';
 
 export class LocalDataSource extends DataSource {
 
   protected data: Array<any> = [];
   protected filteredAndSorted: Array<any> = [];
-  protected sortConf: Array<any> = [];
+  protected sortConf: Array<ISortConfig> = [];
   protected filterConf: any = {
     filters: [],
     andOperator: true,
@@ -130,17 +130,27 @@ export class LocalDataSource extends DataSource {
     return this.selectedItems;
   }
 
-  setSort(conf: Array<any>, doEmit = true): LocalDataSource {
+  setSort(conf: Array<ISortConfig>, doEmit = true): LocalDataSource {
+    this.sortConf = conf ?? [];
+    super.setSort(conf, doEmit);
+    return this;
+  }
+
+  updateSort(conf: Array<ISortConfig>, doEmit = true): LocalDataSource {
     if (conf !== null) {
-
       conf.forEach((fieldConf) => {
-        if (!fieldConf['field'] || typeof fieldConf['direction'] === 'undefined') {
-          throw new Error('Sort configuration object is not valid');
+        const found = this.sortConf.findIndex(c => c.field === fieldConf.field);
+        if (found >= 0) {
+          if (fieldConf.compare === undefined) {
+            // keep the previously configured compare function
+            fieldConf.compare = this.sortConf[found].compare;
+          }
+          this.sortConf.splice(found, 1);
         }
+        // push the updated config to the front of the array (highest sort priority)
+        this.sortConf = [fieldConf, ...this.sortConf];
       });
-      this.sortConf = conf;
     }
-
     super.setSort(conf, doEmit);
     return this;
   }
@@ -208,7 +218,7 @@ export class LocalDataSource extends DataSource {
     return this;
   }
 
-  getSort(): any {
+  getSort(): Array<ISortConfig> {
     return this.sortConf;
   }
 
@@ -229,13 +239,27 @@ export class LocalDataSource extends DataSource {
   }
 
   protected sort(data: Array<any>): Array<any> {
-    if (this.sortConf) {
-      this.sortConf.forEach((fieldConf) => {
-        data = LocalSorter
-          .sort(data, fieldConf['field'], fieldConf['direction'], fieldConf['compare']);
-      });
-    }
-    return data;
+    // only use the part of the config where sorting is enabled
+    const sortConfig = this.sortConf.filter(c => c.direction !== null);
+
+    return data.sort((a, b) => {
+      for (const sc of sortConfig) {
+        const dir: number = (sc.direction === 'asc') ? 1 : -1;
+        const compare: Function = sc.compare ? sc.compare : defaultComparator;
+        let parts = sc.field.split(".");
+        let propA = a;
+        for (let i = 0; i < parts.length && typeof propA !== 'undefined'; i++) {
+          propA = propA[parts[i]];
+        }
+        let propB = b;
+        for (let i = 0; i < parts.length && typeof propB !== 'undefined'; i++) {
+          propB = propB[parts[i]];
+        }
+        const result = compare.call(null, dir, propA, propB);
+        if (result !== 0) return result;
+      }
+      return 0;
+    });
   }
 
   // TODO: refactor?

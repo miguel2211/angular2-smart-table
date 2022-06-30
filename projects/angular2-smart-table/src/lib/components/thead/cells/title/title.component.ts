@@ -1,26 +1,28 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {Subscription} from 'rxjs';
 
-import { DataSource } from '../../../../lib/data-source/data-source';
-import { Column } from '../../../../lib/data-set/column';
+import {DataSource} from '../../../../lib/data-source/data-source';
+import {Column} from '../../../../lib/data-set/column';
 
 @Component({
   selector: 'angular2-smart-table-title',
   styleUrls: ['./title.component.scss'],
   template: `
     <a href="#" *ngIf="column.isSortable"
-                (click)="_sort($event)"
-                class="angular2-smart-sort-link sort"
-                [ngClass]="currentDirection">
+       (click)="_sort($event)"
+       class="angular2-smart-sort-link sort"
+       [ngClass]="currentDirection??''">
       {{ column.title }}
     </a>
     <span class="angular2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
-    <button style="position: absolute; top:0; right:0; border:none" *ngIf="isHideable" (click)="_hideColumnClicked($event)">X</button>
+    <button style="position: absolute; top:0; right:0; border:none" *ngIf="isHideable"
+            (click)="_hideColumnClicked($event)">X
+    </button>
   `,
 })
 export class TitleComponent implements OnChanges {
 
-  currentDirection = '';
+  currentDirection: 'asc'|'desc'|null = null;
   @Input() column!: Column;
   @Input() source!: DataSource;
   @Input() isHideable!: boolean;
@@ -35,17 +37,15 @@ export class TitleComponent implements OnChanges {
         this.dataChangedSub.unsubscribe();
       }
       this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
+        this.currentDirection = null;
         const sortConf = this.source.getSort();
-
-        if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id) {
-          this.currentDirection = sortConf[0]['direction'];
-        } else {
-          this.currentDirection = '';
+        if (sortConf) {
+          sortConf.forEach(c => {
+            if (c.field === this.column.id) {
+              this.currentDirection = c.direction;
+            }
+          });
         }
-
-        sortConf.forEach((fieldConf: any) => {
-
-        });
       });
     }
   }
@@ -53,7 +53,7 @@ export class TitleComponent implements OnChanges {
   _sort(event: any) {
     event.preventDefault();
     this.changeSortDirection();
-    this.source.setSort([
+    this.source.updateSort([
       {
         field: this.column.id,
         direction: this.currentDirection,
@@ -70,13 +70,14 @@ export class TitleComponent implements OnChanges {
   }
 
 
-  changeSortDirection(): string {
-    if (this.currentDirection) {
-      const newDirection = this.currentDirection === 'asc' ? 'desc' : 'asc';
-      this.currentDirection = newDirection;
-    } else {
-      this.currentDirection = this.column.sortDirection ?? 'asc';
+  private changeSortDirection(): void {
+    // rotate sort direction, including null (no sort)
+    if (this.currentDirection === null) {
+      this.currentDirection = 'asc';
+    } else if (this.currentDirection === 'asc') {
+      this.currentDirection = 'desc';
+    } else if (this.currentDirection === 'desc') {
+      this.currentDirection = null;
     }
-    return this.currentDirection;
   }
 }

@@ -960,15 +960,15 @@
       </td>
     </tr>
     <tr>
-      <td>setSort</td>
+      <td>updateSort</td>
       <td>
         <ul>
           <li>
             conf: <span class="highlight">Array</span> - array of sort setting objects, object format is:
             <ul>
               <li>field - <span class="highlight">string</span> - columnKey</li>
-              <li>direction - <span class="string">string|null</span> - 'asc'|'desc'|null - sort direction</li>
-              <li>compare - <span class="string">Function|null</span> - custom compare function</li>
+              <li>direction - <span class="highlight">string|null</span> - 'asc'|'desc'|null - sort direction</li>
+              <li>compare? - <span class="highlight">Function|null|undefined</span> - optional custom compare function</li>
             </ul>
           </li>
           <li>
@@ -976,8 +976,31 @@
           </li>
         </ul>
       <td>
-        Set table sorts, example: <br>
-        <code>this.source.setSort([{{ '{' }} field: 'id', direction: 'asc' {{ '}' }}]);</code>
+        Updates the sorting configuration for the fields specified, leaving any other sorting configuration intact, example: <br>
+        <code>this.source.updateSort([{{ '{' }} field: 'id', direction: 'asc' {{ '}' }}]);</code>
+        <br>
+        Note, that the latest added configuration will have the most significant sorting priority.
+      </td>
+    </tr>
+    <tr>
+      <td>setSort</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Array</span> - array of sort setting objects, object format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>direction - <span class="highlight">string|null</span> - 'asc'|'desc'|null - sort direction</li>
+              <li>compare? - <span class="highlight">Function|null</span> - optional custom compare function</li>
+            </ul>
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Replaces the entire sort configuration, removing anything that is not specified in the argument of this function.
+        You should not use this function. Use <span class="highlight">updateSort</span>, instead.
       </td>
     </tr>
     <tr>

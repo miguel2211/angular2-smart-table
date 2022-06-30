@@ -95,8 +95,10 @@ export class ServerDataSource extends LocalDataSource {
   protected addSortRequestParams(httpParams: HttpParams): HttpParams {
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
-        httpParams = httpParams.set(this.conf.sortFieldKey, fieldConf.field);
-        httpParams = httpParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        if (fieldConf.direction !== null) {
+          httpParams = httpParams.set(this.conf.sortFieldKey, fieldConf.field);
+          httpParams = httpParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        }
       });
     }
 

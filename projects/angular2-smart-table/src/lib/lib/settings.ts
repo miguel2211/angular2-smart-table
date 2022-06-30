@@ -49,7 +49,7 @@ export enum IColumnType {
   Custom = "custom"
 }
 
-export type ISortDirection = 'asc' | 'desc';
+export type ISortDirection = 'asc' | 'desc' | null; // null means: do not sort
 
 export type ColumnValuePrepareFunction = (cellValue: any, row: any, cell: Cell) => any;
 export type ColumnFilterFunction = (cellValue: any, searchString: string, rowData: any, cellName: string, row: any) => void;
@@ -62,7 +62,7 @@ export interface IColumn {
   class?: string;
   width?: string;
   sortDirection?: ISortDirection;
-  defaultSortDirection?: string;
+  defaultSortDirection?: ISortDirection;
   editor?: { type: string, config?: any, component?: any };
   filter?: { type: string, config?: any, component?: any } | boolean;
   renderComponent?: any;

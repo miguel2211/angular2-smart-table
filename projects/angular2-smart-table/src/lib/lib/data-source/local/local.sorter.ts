@@ -56,25 +56,3 @@ export function defaultComparator(direction: any, left: any, right: any) {
     return defaultObjectComparator(direction, left, right);
   }
 }
-
-export class LocalSorter {
-
-  static sort(data: Array<any>, field: string, direction: string, customCompare?: Function): Array<any> {
-
-    const dir: number = (direction === 'asc') ? 1 : -1;
-    const compare: Function = customCompare ? customCompare : defaultComparator;
-
-    return data.sort((a, b) => {
-      let parts = field.split(".");
-      let propA = a;
-      for (let i = 0; i < parts.length && typeof propA !== 'undefined'; i++) {
-        propA = propA[parts[i]];
-      }
-      let propB = b;
-      for (let i = 0; i < parts.length && typeof propB !== 'undefined'; i++) {
-        propB = propB[parts[i]];
-      }
-      return compare.call(null, dir, propA, propB);
-    });
-  }
-}

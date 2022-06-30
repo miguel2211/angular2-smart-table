@@ -1,7 +1,12 @@
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
+import {ISortDirection} from '../settings';
 
-
+export interface ISortConfig {
+  field: string,
+  direction: ISortDirection,
+  compare?: Function,
+}
 
 export abstract class DataSource {
 
@@ -13,7 +18,7 @@ export abstract class DataSource {
   abstract getAll(): Promise<any>;
   abstract getElements(): Promise<any>;
   abstract getFilteredAndSorted(): Promise<any>;
-  abstract getSort(): any;
+  abstract getSort(): Array<ISortConfig>;
   abstract getFilter(): any;
   abstract getPaging(): any;
   abstract count(total?: boolean): number;
@@ -85,13 +90,29 @@ export abstract class DataSource {
    *
    * Array of conf objects
    * [
-   *  {field: string, direction: asc|desc|null, compare: Function|null},
+   *  {field: string, direction: asc|desc|null, compare?: Function|null},
    * ]
    * @param conf the configuration to add
    * @param doEmit indicates whether a sort event shall be emitted
    * @returns this data source
    */
-  setSort(conf: Array<any>, doEmit?: boolean) {
+  setSort(conf: Array<ISortConfig>, doEmit?: boolean) {
+    if (doEmit) {
+      this.emitOnChanged('sort');
+    }
+  }
+
+  /**
+   *
+   * Array of conf objects
+   * [
+   *  {field: string, direction: asc|desc|null, compare?: Function|null},
+   * ]
+   * @param conf the configuration to add
+   * @param doEmit indicates whether a sort event shall be emitted
+   * @returns this data source
+   */
+  updateSort(conf: Array<ISortConfig>, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('sort');
     }

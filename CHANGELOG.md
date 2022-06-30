@@ -4,6 +4,7 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.5.0
 
+* Reworks sorting methods - now multi-sort is also possible
 * Fixes missing `renderComponent` in the interface of `CustomAction`
 * Adds missing documentation for `CustomAction`
 * Fixes use of deprecated symbols

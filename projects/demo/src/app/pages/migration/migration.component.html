@@ -1,10 +1,7 @@
 <header-component tagline="Coming from ng2-smart-table"></header-component>
 <section class="main-content">
 
-  <h2>
-
-    Migration Guide
-  </h2>
+  <h2>Migration Guide</h2>
   <p>
     This document is for people who migrate their project from ng2-smart-table to this fork.
     It contains information about the most significant changes and gives some advice that help
@@ -21,25 +18,17 @@
     <a [routerLink]="['/documentation']">here</a>.
   </p>
 
-  <h3>
-
-    Bring Back the Styling
-  </h3>
+  <h3>Bring Back the Styling</h3>
   <p>
     If you want to stick to the original styling of the smart-table, you can copy the <a href="https://github.com/akveo/nebular/blob/master/src/framework/theme/styles/global/tables/_smart-table.theme.scss" target="_blank">original SCSS file</a>
     into your project and replace the <code>ng2-</code> prefix of the selectors with <code>angular2-</code>.
     There is no guarantee that this results in a perfect replica of the original styling, but it may come a lot more closer.
   </p>
 
-  <h3>
-
-    Setting Keys
-  </h3>
+  <h3>Setting Keys</h3>
   This Section describes the changes to the settings object.
-  <h4>
 
-    Deprecated
-  </h4>
+  <h4>Deprecated</h4>
   <p>
     The following setting keys are deprecated, but still work in the current version:
   </p>
@@ -49,10 +38,8 @@
   </ul>
   We advise you to change the setting keys as soon as possible. We do not plan on removing the deprecated keys anytime
   soon, but things may change in the future.
-  <h4>
 
-    New Settings
-  </h4>
+  <h4>New Settings</h4>
   <p>
     <code>isAddable</code> - This flag works like <code>isEditable</code> (formerly <code>editable</code>) but affects
     the cell in the row that is displayed when adding a new item (inline mode only).
@@ -76,10 +63,15 @@
     This is currently experimental and may not work smoothly in all environments.
   </p>
 
-  <h3>
+  <h3>Changed Behavior</h3>
+  <p>
+    For some reason, the <code>DataSource.setSort()</code> method allowed the specification of multiple fields.
+    However, support for sorting by multiple columns was never really implemented. Now it is, but to keep the API
+    backwards compatible, <code>setSort()</code> still replaces the entire sort configuration and we introduced a
+    new <code>updateSort()</code> method to adjust sorting parameters.
+  </p>
 
-    Fixed Bugs
-  </h3>
+  <h3>Fixed Bugs</h3>
   <p>
     The documentation of the method <code>DataSource.count()</code> says to return the number of elements
     in the data source. But the <code>LocalDataSource</code> returned the number of filtered elements.
