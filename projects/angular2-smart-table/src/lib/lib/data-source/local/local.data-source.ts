@@ -1,7 +1,7 @@
 import {defaultComparator} from './local.sorter';
 import {LocalFilter} from './local.filter';
 import {LocalPager} from './local.pager';
-import {DataSource, ISortConfig} from '../data-source';
+import {DataSource, IDataSourceFilter, IFilterConfig, ISortConfig} from '../data-source';
 import {deepExtend} from '../../helpers';
 
 export class LocalDataSource extends DataSource {
@@ -9,7 +9,7 @@ export class LocalDataSource extends DataSource {
   protected data: Array<any> = [];
   protected filteredAndSorted: Array<any> = [];
   protected sortConf: Array<ISortConfig> = [];
-  protected filterConf: any = {
+  protected filterConf: IDataSourceFilter = {
     filters: [],
     andOperator: true,
   };
@@ -166,7 +166,7 @@ export class LocalDataSource extends DataSource {
    * @param doEmit
    * @returns {LocalDataSource}
    */
-  setFilter(conf: Array<any>, andOperator = true, doEmit = true): LocalDataSource {
+  setFilter(conf: Array<IFilterConfig>, andOperator = true, doEmit = true): LocalDataSource {
     if (conf && conf.length > 0) {
       conf.forEach((fieldConf) => {
         this.addFilter(fieldConf, andOperator, false);
@@ -184,14 +184,10 @@ export class LocalDataSource extends DataSource {
     return this;
   }
 
-  addFilter(fieldConf: any, andOperator = true, doEmit: boolean = true): LocalDataSource {
-    if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
-      throw new Error('Filter configuration object is not valid');
-    }
-
+  addFilter(fieldConf: IFilterConfig, andOperator = true, doEmit: boolean = true): LocalDataSource {
     let found = false;
-    this.filterConf.filters.forEach((currentFieldConf: any, index: any) => {
-      if (currentFieldConf['field'] === fieldConf['field']) {
+    this.filterConf.filters.forEach((currentFieldConf: IFilterConfig, index: number) => {
+      if (currentFieldConf.field === fieldConf.field) {
         this.filterConf.filters[index] = fieldConf;
         found = true;
       }
@@ -222,7 +218,7 @@ export class LocalDataSource extends DataSource {
     return this.sortConf;
   }
 
-  getFilter(): any {
+  getFilter(): IDataSourceFilter {
     return this.filterConf;
   }
 
@@ -266,18 +262,16 @@ export class LocalDataSource extends DataSource {
   protected filter(data: Array<any>): Array<any> {
     if (this.filterConf.filters) {
       if (this.filterConf.andOperator) {
-        this.filterConf.filters.forEach((fieldConf: any) => {
-          if (fieldConf['search'].length > 0) {
-            data = LocalFilter
-              .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
+        this.filterConf.filters.forEach(fieldConf => {
+          if (fieldConf.search.length > 0) {
+            data = LocalFilter.filter(data, fieldConf);
           }
         });
       } else {
         let mergedData: any = [];
         this.filterConf.filters.forEach((fieldConf: any) => {
           if (fieldConf['search'].length > 0) {
-            mergedData = mergedData.concat(LocalFilter
-              .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
+            mergedData = mergedData.concat(LocalFilter.filter(data, fieldConf));
           }
         });
         // remove non unique items

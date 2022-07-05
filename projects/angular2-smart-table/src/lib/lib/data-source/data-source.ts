@@ -8,6 +8,17 @@ export interface ISortConfig {
   compare?: Function,
 }
 
+export interface IFilterConfig {
+  field: string,
+  search: string,
+  filter?: Function,
+}
+
+export interface IDataSourceFilter {
+  filters: Array<IFilterConfig>,
+  andOperator: boolean;
+}
+
 export abstract class DataSource {
 
   protected onChangedSource = new Subject<any>();
@@ -19,7 +30,7 @@ export abstract class DataSource {
   abstract getElements(): Promise<any>;
   abstract getFilteredAndSorted(): Promise<any>;
   abstract getSort(): Array<ISortConfig>;
-  abstract getFilter(): any;
+  abstract getFilter(): IDataSourceFilter;
   abstract getPaging(): any;
   abstract count(total?: boolean): number;
   abstract toggleItem(row: any, isSelected: boolean): void;
@@ -118,13 +129,13 @@ export abstract class DataSource {
     }
   }
 
-  setFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean) {
+  setFilter(conf: Array<IFilterConfig>, andOperator?: boolean, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('filter');
     }
   }
 
-  addFilter(fieldConf: {}, andOperator?: boolean, doEmit?: boolean) {
+  addFilter(fieldConf: IFilterConfig, andOperator?: boolean, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('filter');
     }

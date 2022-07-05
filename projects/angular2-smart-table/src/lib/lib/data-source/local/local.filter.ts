@@ -1,3 +1,5 @@
+import {IFilterConfig} from '../data-source';
+
 /**
  * A filter predicate that implements a case-insensitive string inclusion.
  *
@@ -17,17 +19,15 @@ export function defaultStringInclusionFilter(cellValue: string, search: string, 
 
 export class LocalFilter {
 
-  static filter(data: Array<any>, field: string, search: string, customFilter?: Function): Array<any> {
-    const filter: Function = customFilter ? customFilter : defaultStringInclusionFilter;
+  static filter(data: Array<any>, filterConf: IFilterConfig): Array<any> {
+    const filter: Function = filterConf.filter ? filterConf.filter : defaultStringInclusionFilter;
     return data.filter((el) => {
-      //const value = typeof el[field] === 'undefined' || el[field] === null ? '' : el[field];
-      //return filter.call(null, value, search, el);
-      let parts = field.split(".");
+      let parts = filterConf.field.split(".");
       let prop = el;
-      for (var i = 0; i < parts.length && typeof prop !== 'undefined'; i++) {
+      for (let i = 0; i < parts.length && typeof prop !== 'undefined'; i++) {
         prop = prop[parts[i]];
       }
-      return filter.call(null, prop, search, data, field, el);
+      return filter.call(null, prop, filterConf.search, data, filterConf.field, el);
     });
   }
 }
