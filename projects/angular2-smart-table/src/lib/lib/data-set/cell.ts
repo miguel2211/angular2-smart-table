@@ -21,10 +21,20 @@ export class Cell {
     return this.row;
   }
 
+  /**
+   * Gets the value (after post-processing with valuePrepareFunction).
+   */
   getValue(): any {
     const valid = this.column.getValuePrepareFunction() instanceof Function;
     const prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
     return prepare.call(null, this.value, this.row.getData(), this);
+  }
+
+  /**
+   * Returns the raw value that has not been post-processed by the valuePrepareFunction.
+   */
+  getRawValue(): any {
+    return this.value;
   }
 
   setValue(value: any): any {
@@ -49,8 +59,6 @@ export class Cell {
   }
 
   resetValue(): void {
-    // directly access this.value to get raw value,
-    // because this.getValue() will go through valuePrepareFunction (if any)
-    this.setValue(this.value);
+    this.newValue = this.getRawValue();
   }
 }

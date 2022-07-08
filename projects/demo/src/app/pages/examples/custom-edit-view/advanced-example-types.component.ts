@@ -150,7 +150,7 @@ export class AdvancedExamplesTypesComponent {
             list: [
               {value: 'Developer', title: 'Developer'},
               {value: 'Team Lead', title: 'Team Lead'},
-              {value: 'Manager', title: 'Manager'},
+              {value: 'Management', title: 'Management'},
             ],
           },
         },
@@ -168,8 +168,7 @@ export class AdvancedExamplesTypesComponent {
       },
       passed: {
         title: 'Passed',
-        type: IColumnType.Html,
-        valuePrepareFunction: (v: string) => v === 'Yes' ? '<b>Yes</b>' : 'No',
+        type: IColumnType.Text,
         editor: {
           type: 'checkbox',
           config: {

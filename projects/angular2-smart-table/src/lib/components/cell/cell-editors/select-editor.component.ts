@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 import { DefaultEditor } from './default-editor';
 
@@ -7,7 +7,8 @@ import { DefaultEditor } from './default-editor';
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
-            [(ngModel)]="cell.newValue"
+            [value]="cell.newValue"
+            (change)="onSelectionChanged($any($event.target).value)"
             [name]="cell.getId()"
             [disabled]="!cell.isEditable()"
             (click)="onClick.emit($event)"
@@ -16,7 +17,7 @@ import { DefaultEditor } from './default-editor';
             (keydown.esc)="onStopEditing.emit()">
 
         <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
-                [selected]="option.value === cell.getValue()">{{ option.title }}
+                [selected]="option.value === cell.getRawValue()">{{ option.title }}
         </option>
     </select>
     `,
@@ -25,5 +26,9 @@ export class SelectEditorComponent extends DefaultEditor {
 
   constructor() {
     super();
+  }
+
+  onSelectionChanged(newValue: string) {
+    this.cell.newValue = newValue;
   }
 }
