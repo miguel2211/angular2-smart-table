@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange} from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DataSet } from './lib/data-set/data-set';
@@ -14,7 +14,7 @@ import { IColumn, Settings } from './lib/settings';
   styleUrls: ['./angular2-smart-table.component.scss'],
   templateUrl: './angular2-smart-table.component.html',
 })
-export class Angular2SmartTableComponent {
+export class Angular2SmartTableComponent implements OnChanges, OnDestroy {
 
   @Input() source: any;
   @Input() settings: Settings = {};
