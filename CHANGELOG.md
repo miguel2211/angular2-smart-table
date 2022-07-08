@@ -7,6 +7,12 @@ This document lists the changes introduced by this fork.
 * Reworks sorting methods - now multi-sort is also possible
 * Strongly typed sorting and filtering config for data sources
 * Fixes missing documentation for `getSort` and `getFilter` methods
+* Fixes missing documentation for `pager.perPageSelect`
+* Fixes missing member in interface for `Pager.perPageSelect`
+* Adds setting `pager.perPageSelectLabel` to be able to configure the displayed label
+* Fixes inconsistent margins in the pagination section
+* Fixes `perPageSelect` moving the left when the page selection is hidden
+* Fixes a bug in internal `getSetting` function that caused the function to return wrong results when a nested setting was left undefined
 * Fixes missing `renderComponent` in the interface of `CustomAction`
 * Adds missing documentation for `CustomAction`
 * Fixes use of deprecated symbols

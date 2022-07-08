@@ -39,7 +39,7 @@ import { DataSource } from '../../lib/data-source/data-source';
             <span class="sr-only">Next</span>
           </a>
         </li>
-        
+
         <li class="angular2-smart-page-item page-item"
         [ngClass]="{disabled: getPage() == getLast()}">
           <a class="angular2-smart-page-link page-link" href="#"
@@ -50,11 +50,10 @@ import { DataSource } from '../../lib/data-source/data-source';
         </li>
       </ul>
     </nav>
-    
+    <div *ngIf="!shouldShow()"><!-- placeholder to consume the space of the page selection --></div>
+
     <nav *ngIf="perPageSelect && perPageSelect.length > 0" class="angular2-smart-pagination-per-page">
-      <label for="per-page">
-        Per Page:
-      </label>
+      <label for="per-page" *ngIf="perPageSelectLabel">{{perPageSelectLabel}}</label>
       <select (change)="onChangePerPage($event)" [(ngModel)]="currentPerPage" id="per-page">
         <option *ngFor="let item of perPageSelect" [value]="item">{{ item }}</option>
       </select>
@@ -64,7 +63,8 @@ import { DataSource } from '../../lib/data-source/data-source';
 export class PagerComponent implements OnChanges {
 
   @Input() source!: DataSource;
-  @Input() perPageSelect: any[] = [];
+  @Input() perPageSelect!: number[];
+  @Input() perPageSelectLabel!: string;
 
   @Output() changePage = new EventEmitter<any>();
 

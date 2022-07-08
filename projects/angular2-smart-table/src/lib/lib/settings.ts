@@ -118,6 +118,8 @@ export interface Pager {
   page?: number;
   display?: boolean;
   perPage?: number;
+  perPageSelect?: number[];
+  perPageSelectLabel?: string;
 }
 
 export interface CustomAction {

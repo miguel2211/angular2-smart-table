@@ -10,6 +10,10 @@ import {Settings} from "angular2-smart-table";
 export class BasicExampleDataComponent {
 
   settings: Settings = {
+    pager: {
+      perPage: 5,
+      perPageSelect: [5, 10, 15],
+    },
     columns: {
       id: {
         title: 'ID',
@@ -92,6 +96,12 @@ export class BasicExampleDataComponent {
       name: 'Nicholas DuBuque',
       username: 'Nicholas.Stanton',
       email: 'Rey.Padberg@rosamond.biz',
+    },
+    {
+      id: 12,
+      name: 'Gordon Freeman',
+      username: 'Crowbar',
+      email: 'gordon.freeman@black-mesa.science',
     },
   ];
 }

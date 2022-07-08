@@ -35,7 +35,8 @@ export class Angular2SmartTableComponent {
 
   tableClass!: string;
   tableId!: string;
-  perPageSelect: any;
+  perPageSelect: number[] = [];
+  perPageSelectLabel: string = 'Per Page:';
   isHideHeader!: boolean;
   isHideSubHeader!: boolean;
   isPagerDisplay!: boolean;
@@ -126,7 +127,8 @@ export class Angular2SmartTableComponent {
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
-    this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
+    this.perPageSelect = this.grid.getSetting('pager.perPageSelect', this.perPageSelect);
+    this.perPageSelectLabel = this.grid.getSetting('pager.perPageSelectLabel', this.perPageSelectLabel);
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
 
