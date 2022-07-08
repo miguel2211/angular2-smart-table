@@ -15,6 +15,7 @@ This document lists the changes introduced by this fork.
 * Fixes a bug in internal `getSetting` function that caused the function to return wrong results when a nested setting was left undefined
 * Fixes missing `renderComponent` in the interface of `CustomAction`
 * Adds missing documentation for `CustomAction`
+* Fixes missing initialization in editors of type 'list' or 'completer'
 * Fixes use of deprecated symbols
 
 ## Version 2.4.1
