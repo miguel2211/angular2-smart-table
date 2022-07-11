@@ -73,11 +73,30 @@
       </td>
     </tr>
     <tr>
+      <td>classHeader</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        CSS class that is applied to the column header cell.
+      </td>
+    </tr>
+    <tr>
+      <td>classContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        CSS class that is applied to each column content cell.
+        If you use a custom renderer, you can make use of this class by adding
+        <span class="highlight">[ngClass]="cell.getColumn().classContent??''"</span>
+        to your HTML template.
+      </td>
+    </tr>
+    <tr>
       <td>class</td>
       <td><span class="highlight">string</span></td>
       <td>''</td>
       <td>
-        Column class
+        Deprecated alias for classHeader.
       </td>
     </tr>
     <tr>

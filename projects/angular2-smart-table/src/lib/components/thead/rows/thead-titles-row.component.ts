@@ -18,7 +18,7 @@ import {Column} from "../../../lib/data-set/column";
     <th angular2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
     <th *ngFor="let column of getVisibleColumns(grid.getColumns())"
         class="angular2-smart-th {{ column.id }}"
-        [ngClass]="column.class ?? ''"
+        [ngClass]="column.classHeader ?? ''"
         [style.width]="column.width"
     >
       <angular2-st-column-title

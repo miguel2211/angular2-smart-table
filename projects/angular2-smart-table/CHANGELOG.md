@@ -4,6 +4,8 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.5.0
 
+* Add new column settings `classHeader` and `classContent`
+* Deprecates column setting `class` (remains as alias for `classHeader`)
 * Reworks sorting methods - now multi-sort is also possible
 * Strongly typed sorting and filtering config for data sources
 * Fixes missing documentation for `getSort` and `getFilter` methods

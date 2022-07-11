@@ -59,6 +59,8 @@ export type ColumnFilterFunction = (cellValue: any, searchString: string, rowDat
 export interface IColumn {
   title?: string;
   type?: IColumnType;
+  classHeader?: string;
+  classContent?: string;
   class?: string;
   width?: string;
   sortDirection?: ISortDirection;

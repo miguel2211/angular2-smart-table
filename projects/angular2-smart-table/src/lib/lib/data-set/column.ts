@@ -7,7 +7,8 @@ export class Column implements IColumn {
   title: string = '';
   hide: boolean = false;
   type?: IColumnType = IColumnType.Text;
-  class?: string = '';
+  classHeader?: string = '';
+  classContent?: string = '';
   width?: string = '';
   isSortable?: boolean = true;
   isEditable?: boolean = true;
@@ -80,7 +81,8 @@ export class Column implements IColumn {
 
     this.placeholder = this.lookupSetting('placeholder');
     this.title = this.lookupSetting('title') ?? this.title;
-    this.class = this.lookupSetting('class') ?? this.class;
+    this.classHeader = this.lookupSetting('classHeader', ['class']) ?? this.classHeader;
+    this.classContent = this.lookupSetting('classContent', ['class']) ?? this.classContent;
     this.width = this.lookupSetting('width') ?? this.width;
     this.hide = this.lookupSetting('hide') ?? this.hide;
     this.type = this.lookupSetting('type') ?? this.determineType();

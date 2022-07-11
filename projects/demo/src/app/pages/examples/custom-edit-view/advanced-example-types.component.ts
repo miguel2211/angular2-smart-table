@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
-import { IColumnType } from 'angular2-smart-table';
+import { IColumnType, Settings } from 'angular2-smart-table';
 
 @Component({
   selector: 'advanced-example-types',
   template: `
+    <style>
+      ::ng-deep .with-ellipsis {
+        max-width: 10rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    </style>
     <angular2-smart-table [settings]="settings" [source]="data"></angular2-smart-table>
   `,
 })
@@ -116,7 +124,7 @@ export class AdvancedExamplesTypesComponent {
     },
   ];
 
-  settings = {
+  settings: Settings = {
     columns: {
       id: {
         title: 'ID',
@@ -162,6 +170,7 @@ export class AdvancedExamplesTypesComponent {
       comments: {
         title: 'Comments',
         type: IColumnType.Text,
+        classContent: 'with-ellipsis',
         editor: {
           type: 'textarea',
         },
