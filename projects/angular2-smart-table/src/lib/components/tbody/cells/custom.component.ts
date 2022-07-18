@@ -3,6 +3,7 @@ import {Row} from '../../../lib/data-set/row';
 
 import {Grid} from '../../../lib/grid';
 import {CustomAction} from '../../../lib/settings';
+import {CustomActionEvent} from '../../../lib/events';
 
 @Component({
   selector: 'angular2-st-tbody-custom',
@@ -29,18 +30,19 @@ export class TbodyCustomComponent {
   @Input() grid!: Grid;
   @Input() row!: Row;
   @Input() source: any;
-  @Output() custom = new EventEmitter<any>();
+  @Output() custom = new EventEmitter<CustomActionEvent>();
 
   get customActions(): CustomAction[] {
     return this.grid.getSetting('actions.custom') ?? [];
   }
 
-  onCustom(action: any, event: any) {
+  onCustom(action: CustomAction, event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
 
     this.custom.emit({
       action: action.name,
+      row: this.row,
       data: this.row.getData(),
       source: this.source,
     });

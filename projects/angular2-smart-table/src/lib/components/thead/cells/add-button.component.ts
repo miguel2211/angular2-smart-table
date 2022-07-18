@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Ou
 
 import {Grid} from '../../../lib/grid';
 import {DataSource} from '../../../lib/data-source/data-source';
+import {CreateEvent} from '../../../lib/events';
 
 @Component({
   selector: '[angular2-st-add-button]',
@@ -14,7 +15,7 @@ export class AddButtonComponent implements AfterViewInit, OnChanges {
 
   @Input() grid!: Grid;
   @Input() source!: DataSource;
-  @Output() create = new EventEmitter<any>();
+  @Output() create = new EventEmitter<CreateEvent>();
 
   isActionAdd!: boolean;
   addNewButtonContent!: string;

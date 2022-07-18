@@ -21,8 +21,8 @@
 
       <angular2-st-tbody-edit-delete [grid]="grid"
                                 [deleteConfirm]="deleteConfirm"
-                                (edit)="edit.emit(row)"
-                                (delete)="delete.emit(row)"
+                                (edit)="edit.emit($event)"
+                                (delete)="delete.emit($event)"
                                 (editRowSelect)="editRowSelect.emit($event)"
                                 [row]="row"
                                 [source]="source">
@@ -62,8 +62,8 @@
                                 [deleteConfirm]="deleteConfirm"
                                 [row]="row"
                                 [source]="source"
-                                (edit)="edit.emit(row)"
-                                (delete)="delete.emit(row)"
+                                (edit)="edit.emit($event)"
+                                (delete)="delete.emit($event)"
                                 (editRowSelect)="editRowSelect.emit($event)">
       </angular2-st-tbody-edit-delete>
     </td>

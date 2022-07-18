@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input, OnChanges} from '@angular/core';
 import {Grid} from '../../../lib/grid';
 import {Row} from '../../../lib/data-set/row';
 import {Cell} from '../../../lib/data-set/cell';
+import {CreateCancelEvent, CreateConfirmEvent} from '../../../lib/events';
 
 @Component({
   selector: '[angular2-st-thead-form-row]',
@@ -31,8 +32,8 @@ export class TheadFormRowComponent implements OnChanges {
 
   @Input() grid!: Grid;
   @Input() row!: Row;
-  @Input() createConfirm!: EventEmitter<any>;
-  @Input() createCancel!: EventEmitter<any>;
+  @Input() createConfirm!: EventEmitter<CreateConfirmEvent>;
+  @Input() createCancel!: EventEmitter<CreateCancelEvent>;
 
   isMultiSelectVisible!: boolean;
   showActionColumnLeft!: boolean;

@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Outp
 import {Grid} from '../../../lib/grid';
 import {Row} from '../../../lib/data-set/row';
 import {DataSource} from '../../../lib/data-source/data-source';
+import {DeleteConfirmEvent, DeleteEvent, EditEvent} from '../../../lib/events';
 
 @Component({
   selector: 'angular2-st-tbody-edit-delete',
@@ -19,10 +20,10 @@ export class TbodyEditDeleteComponent implements OnChanges {
   @Input() grid!: Grid;
   @Input() row!: Row;
   @Input() source!: DataSource;
-  @Input() deleteConfirm!: EventEmitter<any>;
+  @Input() deleteConfirm!: EventEmitter<DeleteConfirmEvent>;
 
-  @Output() edit = new EventEmitter<any>();
-  @Output() delete = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<EditEvent>();
+  @Output() delete = new EventEmitter<DeleteEvent>();
   @Output() editRowSelect = new EventEmitter<any>();
 
   isActionEdit!: boolean;
@@ -38,6 +39,7 @@ export class TbodyEditDeleteComponent implements OnChanges {
 
     if (this.grid.getSetting('mode') === 'external') {
       this.edit.emit({
+        row: this.row,
         data: this.row.getData(),
         source: this.source,
       });
@@ -52,6 +54,7 @@ export class TbodyEditDeleteComponent implements OnChanges {
 
     if (this.grid.getSetting('mode') === 'external') {
       this.delete.emit({
+        row: this.row,
         data: this.row.getData(),
         source: this.source,
       });

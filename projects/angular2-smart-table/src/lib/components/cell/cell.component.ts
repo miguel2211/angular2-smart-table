@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input} from '@angular/core';
 import {Grid} from '../../lib/grid';
 import {Cell} from '../../lib/data-set/cell';
 import {Row} from '../../lib/data-set/row';
+import {CreateCancelEvent, CreateConfirmEvent, EditCancelEvent, EditConfirmEvent} from '../../lib/events';
 
 @Component({
   selector: 'angular2-smart-table-cell',
@@ -25,11 +26,11 @@ export class CellComponent {
   @Input() isInEditing: boolean = false;
   @Input() isNew!: boolean;
   // if isNew === false
-  @Input() editConfirm!: EventEmitter<any>;
-  @Input() editCancel!: EventEmitter<any>;
+  @Input() editConfirm!: EventEmitter<EditConfirmEvent>;
+  @Input() editCancel!: EventEmitter<EditCancelEvent>;
   // if isNew === true
-  @Input() createConfirm!: EventEmitter<any>;
-  @Input() createCancel!: EventEmitter<any>;
+  @Input() createConfirm!: EventEmitter<CreateConfirmEvent>;
+  @Input() createCancel!: EventEmitter<CreateCancelEvent>;
 
   onEdited() {
     if (this.isNew) {

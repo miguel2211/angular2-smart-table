@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges} from '@angular/core';
 
 import {Grid} from '../../../lib/grid';
 import {Row} from '../../../lib/data-set/row';
+import {EditCancelEvent, EditConfirmEvent} from '../../../lib/events';
 
 @Component({
   // TODO: @breaking-change rename the selector to angular2-st-tbody-save-cancel in the next major version
@@ -17,8 +18,8 @@ export class TbodySaveCancelComponent implements OnChanges {
 
   @Input() grid!: Grid;
   @Input() row!: Row;
-  @Input() editConfirm!: EventEmitter<any>;
-  @Input() editCancel!: EventEmitter<any>;
+  @Input() editConfirm!: EventEmitter<EditConfirmEvent>;
+  @Input() editCancel!: EventEmitter<EditCancelEvent>;
 
   cancelButtonContent!: string;
   saveButtonContent!: string;

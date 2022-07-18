@@ -8,6 +8,7 @@ import {DataSource} from './data-source/data-source';
 import {EventEmitter} from '@angular/core';
 
 import {Settings} from "./settings";
+import {CreateConfirmEvent, DeleteConfirmEvent, EditConfirmEvent} from './events';
 
 export class Grid {
 
@@ -121,7 +122,7 @@ export class Grid {
     row.isInEditing = true;
   }
 
-  create(row: Row, confirmEmitter: EventEmitter<any>) {
+  create(row: Row, confirmEmitter: EventEmitter<CreateConfirmEvent>) {
 
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
@@ -149,7 +150,7 @@ export class Grid {
     }
   }
 
-  save(row: Row, confirmEmitter: EventEmitter<any>) {
+  save(row: Row, confirmEmitter: EventEmitter<EditConfirmEvent>) {
 
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
@@ -167,6 +168,7 @@ export class Grid {
 
     if (this.getSetting('edit.confirmSave')) {
       confirmEmitter.emit({
+        row: row,
         data: row.getData(),
         newData: row.getNewData(),
         source: this.source,
@@ -177,7 +179,7 @@ export class Grid {
     }
   }
 
-  delete(row: Row, confirmEmitter: EventEmitter<any>) {
+  delete(row: Row, confirmEmitter: EventEmitter<DeleteConfirmEvent>) {
 
     const deferred = new Deferred();
     deferred.promise.then(() => {
@@ -188,6 +190,7 @@ export class Grid {
 
     if (this.getSetting('delete.confirmDelete')) {
       confirmEmitter.emit({
+        row: row,
         data: row.getData(),
         source: this.source,
         confirm: deferred,

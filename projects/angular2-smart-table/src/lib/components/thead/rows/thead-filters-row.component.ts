@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {Grid} from '../../../lib/grid';
 import {DataSource} from '../../../lib/data-source/data-source';
 import {Column} from "../../../lib/data-set/column";
+import {CreateEvent} from '../../../lib/events';
 
 @Component({
   selector: '[angular2-st-thead-filters-row]',
@@ -31,7 +32,7 @@ export class TheadFitlersRowComponent implements OnChanges {
   @Input() grid!: Grid;
   @Input() source!: DataSource;
 
-  @Output() create = new EventEmitter<any>();
+  @Output() create = new EventEmitter<CreateEvent>();
   @Output() filter = new EventEmitter<any>();
 
   isMultiSelectVisible!: boolean;

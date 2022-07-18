@@ -15,6 +15,14 @@ import {DataSource} from '../../lib/data-source/data-source';
 import {Cell} from '../../lib/data-set/cell';
 import {delay} from 'rxjs/operators';
 import {Row} from '../../lib/data-set/row';
+import {
+  CustomActionEvent,
+  DeleteConfirmEvent,
+  DeleteEvent,
+  EditCancelEvent,
+  EditConfirmEvent,
+  EditEvent
+} from '../../lib/events';
 
 @Component({
   selector: '[angular2-st-tbody]',
@@ -25,17 +33,15 @@ export class NgxSmartTableTbodyComponent implements AfterViewInit, OnDestroy {
 
   @Input() grid!: Grid;
   @Input() source!: DataSource;
-  @Input() deleteConfirm!: EventEmitter<any>;
-  @Input() editConfirm!: EventEmitter<any>;
-  @Input() editCancel!: EventEmitter<any>;
+  @Input() deleteConfirm!: EventEmitter<DeleteConfirmEvent>;
+  @Input() editConfirm!: EventEmitter<EditConfirmEvent>;
+  @Input() editCancel!: EventEmitter<EditCancelEvent>;
   @Input() rowClassFunction!: Function;
 
-  @Output() save = new EventEmitter<any>();
-  @Output() cancel = new EventEmitter<any>();
-  @Output() edit = new EventEmitter<any>();
-  @Output() delete = new EventEmitter<any>();
-  @Output() custom = new EventEmitter<any>();
-  @Output() edited = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<EditEvent>();
+  @Output() delete = new EventEmitter<DeleteEvent>();
+  @Output() custom = new EventEmitter<CustomActionEvent>();
+
   @Output() userSelectRow = new EventEmitter<Row>();
   @Output() editRowSelect = new EventEmitter<Row>();
   @Output() multipleSelectRow = new EventEmitter<Row>();

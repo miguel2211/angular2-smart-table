@@ -8,6 +8,16 @@ import {LocalDataSource} from './lib/data-source/local/local.data-source';
 import {Grid} from './lib/grid';
 import {deepExtend, getPageForRowIndex} from './lib/helpers';
 import {IColumn, Settings} from './lib/settings';
+import {
+  CreateCancelEvent,
+  CreateConfirmEvent,
+  CreateEvent, CustomActionEvent,
+  DeleteConfirmEvent,
+  DeleteEvent,
+  EditCancelEvent,
+  EditConfirmEvent,
+  EditEvent
+} from './lib/events';
 
 @Component({
   selector: 'angular2-smart-table',
@@ -23,15 +33,15 @@ export class Angular2SmartTableComponent implements OnChanges, OnDestroy {
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
-  @Output() delete = new EventEmitter<any>();
-  @Output() edit = new EventEmitter<any>();
-  @Output() create = new EventEmitter<any>();
-  @Output() custom = new EventEmitter<any>();
-  @Output() deleteConfirm = new EventEmitter<any>();
-  @Output() editConfirm = new EventEmitter<any>();
-  @Output() editCancel = new EventEmitter<any>();
-  @Output() createConfirm = new EventEmitter<any>();
-  @Output() createCancel = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<DeleteEvent>();
+  @Output() edit = new EventEmitter<EditEvent>();
+  @Output() create = new EventEmitter<CreateEvent>();
+  @Output() custom = new EventEmitter<CustomActionEvent>();
+  @Output() deleteConfirm = new EventEmitter<DeleteConfirmEvent>();
+  @Output() editConfirm = new EventEmitter<EditConfirmEvent>();
+  @Output() editCancel = new EventEmitter<EditCancelEvent>();
+  @Output() createConfirm = new EventEmitter<CreateConfirmEvent>();
+  @Output() createCancel = new EventEmitter<CreateCancelEvent>();
   @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
   @Output() afterGridInit: EventEmitter<DataSet> = new EventEmitter<DataSet>();
 
