@@ -10,7 +10,7 @@ import { Row } from '../../lib/data-set/row';
     <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
                           [inputClass]="inputClass"
-                          (edited)="onEdited($event)">
+                          (edited)="onEdited()">
     </table-cell-edit-mode>
   `,
 })
@@ -26,7 +26,7 @@ export class CellComponent {
   @Input() mode: string = 'inline';
   @Input() isInEditing: boolean = false;
 
-  onEdited(event: any) {
+  onEdited() {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
     } else {

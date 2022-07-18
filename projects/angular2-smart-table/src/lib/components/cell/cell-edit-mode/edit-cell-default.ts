@@ -10,10 +10,10 @@ export class EditCellDefault {
   @Input() cell!: Cell;
   @Input() inputClass: string = '';
 
-  @Output() edited = new EventEmitter<any>();
+  @Output() edited = new EventEmitter<void>();
 
-  onEdited(event: any): boolean {
-    this.edited.next(event);
+  onEdited(): boolean {
+    this.edited.emit();
     return false;
   }
 
@@ -22,7 +22,7 @@ export class EditCellDefault {
     return false;
   }
 
-  onClick(event: any) {
+  onClick(event: MouseEvent) {
     event.stopPropagation();
   }
 }

@@ -13,7 +13,7 @@ import { DefaultEditor } from './default-editor';
            [placeholder]="cell.getTitle()"
            [disabled]="!cell.isEditable()"
            (click)="onClick.emit($event)"
-           (keydown.enter)="disableEnterKeySave || onEdited.emit($event)"
+           (keydown.enter)="disableEnterKeySave || onEdited.emit()"
            (keydown.esc)="onStopEditing.emit()">
     `,
 })

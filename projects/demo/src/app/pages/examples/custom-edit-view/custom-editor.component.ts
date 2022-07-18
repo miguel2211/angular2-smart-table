@@ -11,7 +11,7 @@ import { DefaultEditor } from 'angular2-smart-table';
             [placeholder]="cell.getTitle()"
             (click)="onClick.emit($event)"
             (keyup)="updateValue()"
-            (keydown.enter)="onEdited.emit($event)"
+            (keydown.enter)="onEdited.emit()"
             (keydown.esc)="onStopEditing.emit()"><br>
     Url: <input [ngClass]="inputClass"
             #url
@@ -21,7 +21,7 @@ import { DefaultEditor } from 'angular2-smart-table';
             [placeholder]="cell.getTitle()"
             (click)="onClick.emit($event)"
             (keyup)="updateValue()"
-            (keydown.enter)="onEdited.emit($event)"
+            (keydown.enter)="onEdited.emit()"
             (keydown.esc)="onStopEditing.emit()">
     <div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>
   `,
