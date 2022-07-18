@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges} from '@angular/core';
 
 import {Grid} from '../../../lib/grid';
 import {Row} from '../../../lib/data-set/row';
@@ -17,6 +17,7 @@ import {Cell} from '../../../lib/data-set/cell';
         [grid]="grid"
         [isNew]="true"
         [createConfirm]="createConfirm"
+        [createCancel]="createCancel"
         [inputClass]="addInputClass"
         [isInEditing]="grid.getNewRow().isInEditing"
       ></angular2-smart-table-cell>
