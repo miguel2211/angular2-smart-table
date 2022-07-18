@@ -5,7 +5,9 @@ import { DataSource } from '../../lib/data-source/data-source';
 import { TableService } from '../../services/table.service';
 
 @Component({
-  selector: '[angular2-st-thead]', templateUrl: './thead.component.html',
+  selector: '[angular2-st-thead]',
+  styleUrls: ['./thead.component.scss'],
+  templateUrl: './thead.component.html',
 })
 export class NgxSmartTableTheadComponent implements OnChanges {
 
