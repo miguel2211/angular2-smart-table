@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { NgxResizerDirective } from './resizer.directive';
+import {NgxResizerDirective} from './resizer.directive';
 
 const DIRECTIVES = [
   NgxResizerDirective

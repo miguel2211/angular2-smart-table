@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Angular2SmartTableComponent } from './angular2-smart-table.component';
+import {Angular2SmartTableComponent} from './angular2-smart-table.component';
 
 describe('Angular2SmartTableComponent', () => {
   let component: Angular2SmartTableComponent;

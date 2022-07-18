@@ -1,13 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ViewContainerRef,
-  SimpleChanges,
-  OnChanges,
-  OnDestroy,
-} from '@angular/core';
+import {Component, OnChanges, OnDestroy, SimpleChanges, ViewChild, ViewContainerRef,} from '@angular/core';
 
-import { EditCellDefault } from './edit-cell-default';
+import {EditCellDefault} from './edit-cell-default';
 
 @Component({
   selector: 'table-cell-custom-editor',

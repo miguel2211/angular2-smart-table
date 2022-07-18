@@ -1,13 +1,13 @@
-import { Subject, Subscription, Observable } from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 
-import { Deferred, getDeepFromObject, getPageForRowIndex } from './helpers';
-import { Column } from './data-set/column';
-import { Row } from './data-set/row';
-import { DataSet } from './data-set/data-set';
-import { DataSource } from './data-source/data-source';
-import { EventEmitter } from '@angular/core';
+import {Deferred, getDeepFromObject, getPageForRowIndex} from './helpers';
+import {Column} from './data-set/column';
+import {Row} from './data-set/row';
+import {DataSet} from './data-set/data-set';
+import {DataSource} from './data-source/data-source';
+import {EventEmitter} from '@angular/core';
 
-import { Settings } from "./settings";
+import {Settings} from "./settings";
 
 export class Grid {
 

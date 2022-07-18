@@ -1,6 +1,6 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
+import {Cell} from '../../../lib/data-set/cell';
 
 @Component({
   template: ''

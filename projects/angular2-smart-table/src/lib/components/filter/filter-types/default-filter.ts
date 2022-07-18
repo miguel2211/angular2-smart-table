@@ -1,7 +1,7 @@
-import { Input, Output, EventEmitter, OnDestroy, Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import {Subscription} from 'rxjs';
 
-import { Column } from '../../../lib/data-set/column';
+import {Column} from '../../../lib/data-set/column';
 
 @Component({
   template: '',

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 import {Grid} from '../../../lib/grid';
 import {DataSource} from '../../../lib/data-source/data-source';

@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, OnChanges } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { DataSource } from '../../../lib/data-source/data-source';
+import {Grid} from '../../../lib/grid';
+import {DataSource} from '../../../lib/data-source/data-source';
 
 @Component({
   selector: '[angular2-st-add-button]',

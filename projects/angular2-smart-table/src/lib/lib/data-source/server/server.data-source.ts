@@ -1,11 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {lastValueFrom, Observable} from 'rxjs';
 
-import { LocalDataSource } from '../local/local.data-source';
-import { ServerSourceConf } from './server-source.conf';
-import { getDeepFromObject } from '../../helpers';
+import {LocalDataSource} from '../local/local.data-source';
+import {ServerSourceConf} from './server-source.conf';
+import {getDeepFromObject} from '../../helpers';
 
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 export class ServerDataSource extends LocalDataSource {
 

@@ -1,8 +1,8 @@
-import { Directive, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import {Directive, ElementRef, HostListener, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Subject} from 'rxjs';
+import {filter, takeUntil} from 'rxjs/operators';
 
-import { TableService } from '../services/table.service';
+import {TableService} from '../services/table.service';
 
 @Directive({
   selector: '[angular2-resizer]'

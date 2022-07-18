@@ -1,4 +1,4 @@
-import { Cell } from "./data-set/cell";
+import {Cell} from "./data-set/cell";
 
 /**
  * @deprecated just use 'single' or 'multi'

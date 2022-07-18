@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { DataSource } from '../../../lib/data-source/data-source';
+import {Grid} from '../../../lib/grid';
+import {DataSource} from '../../../lib/data-source/data-source';
 
 @Component({
   selector: '[angular2-st-checkbox-select-all]',

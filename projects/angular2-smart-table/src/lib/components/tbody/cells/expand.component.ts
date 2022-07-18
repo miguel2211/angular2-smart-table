@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
-import { Row } from "../../../lib/data-set/row";
-import { Grid } from "../../../lib/grid";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output} from "@angular/core";
+import {Row} from "../../../lib/data-set/row";
+import {Grid} from "../../../lib/grid";
 
 @Component({
     selector: 'angular2-st-tbody-expand',
@@ -11,7 +11,7 @@ import { Grid } from "../../../lib/grid";
     `,
   })
   export class TbodyExpandRowComponent implements OnChanges {
-  
+
     @Input() grid!: Grid;
     @Input() row!: Row;
 
@@ -21,14 +21,14 @@ import { Grid } from "../../../lib/grid";
 
     constructor(){
     }
-  
+
     onExpand(event: any) {
         event.preventDefault();
         event.stopPropagation();
         this.onExpandRow.emit(this.row);
     }
-  
-  
+
+
     ngOnChanges(){
         this.expandRowButtonContent = this.grid.getSetting('expand.expandRowButtonContent');
     }

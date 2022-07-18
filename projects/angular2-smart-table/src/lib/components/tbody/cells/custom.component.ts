@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Row } from '../../../lib/data-set/row';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Row} from '../../../lib/data-set/row';
 
-import { Grid } from '../../../lib/grid';
+import {Grid} from '../../../lib/grid';
 import {CustomAction} from '../../../lib/settings';
 
 @Component({

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
-import { DefaultFilter } from './default-filter';
-import { combineLatest, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {DefaultFilter} from './default-filter';
+import {combineLatest, of} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'date-filter',

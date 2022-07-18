@@ -1,5 +1,5 @@
-import { Row } from './row';
-import { Column } from './column';
+import {Row} from './row';
+import {Column} from './column';
 
 export class DataSet {
 

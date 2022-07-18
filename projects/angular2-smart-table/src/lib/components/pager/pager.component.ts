@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Subscription} from 'rxjs';
 
-import { DataSource } from '../../lib/data-source/data-source';
+import {DataSource} from '../../lib/data-source/data-source';
 
 @Component({
   selector: 'angular2-smart-table-pager',

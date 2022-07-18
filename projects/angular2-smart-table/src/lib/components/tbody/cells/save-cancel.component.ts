@@ -1,7 +1,7 @@
-import { Component, Input, EventEmitter, OnChanges } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { Row } from '../../../lib/data-set/row';
+import {Grid} from '../../../lib/grid';
+import {Row} from '../../../lib/data-set/row';
 
 @Component({
   // TODO: @breaking-change rename the selector to angular2-st-tbody-save-cancel in the next major version

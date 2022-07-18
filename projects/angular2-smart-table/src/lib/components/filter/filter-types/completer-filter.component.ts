@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { CompleterService } from 'ng2-completer';
+import {Component, OnInit} from '@angular/core';
+import {Subject} from 'rxjs';
+import {CompleterService} from 'ng2-completer';
 
-import { DefaultFilter } from './default-filter';
-import { distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
+import {DefaultFilter} from './default-filter';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 @Component({
   selector: 'completer-filter',

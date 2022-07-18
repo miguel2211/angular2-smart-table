@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { EditCellDefault } from './edit-cell-default';
+import {EditCellDefault} from './edit-cell-default';
 
 @Component({
   selector: 'table-cell-default-editor',

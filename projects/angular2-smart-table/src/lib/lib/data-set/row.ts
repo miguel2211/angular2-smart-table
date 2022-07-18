@@ -1,6 +1,6 @@
-import { Cell } from './cell';
-import { Column } from './column';
-import { DataSet } from './data-set';
+import {Cell} from './cell';
+import {Column} from './column';
+import {DataSet} from './data-set';
 
 export class Row {
 
@@ -15,7 +15,7 @@ export class Row {
   }
 
   getCell(column: Column): Cell {
-    const theCell = this.cells.find(el => el.getColumn() === column) 
+    const theCell = this.cells.find(el => el.getColumn() === column)
     if (!theCell) throw new Error('There is no cell with such Column');
     return theCell;
   }

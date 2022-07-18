@@ -1,14 +1,7 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  ViewContainerRef,
-  OnInit,
-  OnDestroy,
-} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef,} from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
-import { ViewCell } from './view-cell';
+import {Cell} from '../../../lib/data-set/cell';
+import {ViewCell} from './view-cell';
 
 @Component({
   selector: 'custom-view-component',

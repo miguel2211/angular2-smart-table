@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DefaultFilter } from './default-filter';
-import { HttpClient } from "@angular/common/http";
-import { DropdownSettings } from 'angular2-multiselect-dropdown/lib/multiselect.interface';
+import {Component, OnInit} from '@angular/core';
+import {DefaultFilter} from './default-filter';
+import {HttpClient} from "@angular/common/http";
+import {DropdownSettings} from 'angular2-multiselect-dropdown/lib/multiselect.interface';
 import {defaultStringInclusionFilter} from '../../../lib/data-source/local/local.filter';
 
 export interface Config {

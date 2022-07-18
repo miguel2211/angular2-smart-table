@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CompleterService } from 'ng2-completer';
+import {Component, OnInit} from '@angular/core';
+import {CompleterService} from 'ng2-completer';
 
-import { DefaultEditor } from './default-editor';
+import {DefaultEditor} from './default-editor';
 
 @Component({
   selector: 'completer-editor',

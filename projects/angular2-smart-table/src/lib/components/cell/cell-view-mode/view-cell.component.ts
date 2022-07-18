@@ -1,6 +1,6 @@
-import {Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
+import {Cell} from '../../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-view-mode',

@@ -1,8 +1,8 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { DataSource } from '../../../lib/data-source/data-source';
-import { Column } from "../../../lib/data-set/column";
+import {Grid} from '../../../lib/grid';
+import {DataSource} from '../../../lib/data-source/data-source';
+import {Column} from "../../../lib/data-set/column";
 
 @Component({
   selector: '[angular2-st-thead-filters-row]',

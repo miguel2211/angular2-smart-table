@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnChanges, HostListener } from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../lib/grid';
-import { DataSource } from '../../lib/data-source/data-source';
-import { TableService } from '../../services/table.service';
+import {Grid} from '../../lib/grid';
+import {DataSource} from '../../lib/data-source/data-source';
+import {TableService} from '../../services/table.service';
 
 @Component({
   selector: '[angular2-st-thead]',

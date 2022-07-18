@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { DefaultEditor } from './default-editor';
+import {DefaultEditor} from './default-editor';
 
 @Component({
   selector: 'checkbox-editor',

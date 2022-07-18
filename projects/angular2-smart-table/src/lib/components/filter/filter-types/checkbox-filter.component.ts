@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
-import { DefaultFilter } from './default-filter';
-import { debounceTime } from 'rxjs/operators';
+import {DefaultFilter} from './default-filter';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'checkbox-filter',

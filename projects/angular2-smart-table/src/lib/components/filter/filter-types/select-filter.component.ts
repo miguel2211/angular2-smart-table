@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgControl } from '@angular/forms';
-import { distinctUntilChanged, debounceTime, skip } from 'rxjs/operators';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgControl} from '@angular/forms';
+import {debounceTime, distinctUntilChanged, skip} from 'rxjs/operators';
 
-import { DefaultFilter } from './default-filter';
+import {DefaultFilter} from './default-filter';
 
 @Component({
   selector: 'select-filter',

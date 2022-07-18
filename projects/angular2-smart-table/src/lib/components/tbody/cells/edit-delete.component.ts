@@ -1,8 +1,8 @@
-import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { Row } from '../../../lib/data-set/row';
-import { DataSource } from '../../../lib/data-source/data-source';
+import {Grid} from '../../../lib/grid';
+import {Row} from '../../../lib/data-set/row';
+import {DataSource} from '../../../lib/data-source/data-source';
 
 @Component({
   selector: 'angular2-st-tbody-edit-delete',

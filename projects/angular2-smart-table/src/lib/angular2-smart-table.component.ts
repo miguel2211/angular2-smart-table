@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange} from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { DataSet } from './lib/data-set/data-set';
-import { Row } from './lib/data-set/row';
-import { DataSource } from './lib/data-source/data-source';
-import { LocalDataSource } from './lib/data-source/local/local.data-source';
-import { Grid } from './lib/grid';
-import { deepExtend, getPageForRowIndex } from './lib/helpers';
-import { IColumn, Settings } from './lib/settings';
+import {Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {DataSet} from './lib/data-set/data-set';
+import {Row} from './lib/data-set/row';
+import {DataSource} from './lib/data-source/data-source';
+import {LocalDataSource} from './lib/data-source/local/local.data-source';
+import {Grid} from './lib/grid';
+import {deepExtend, getPageForRowIndex} from './lib/helpers';
+import {IColumn, Settings} from './lib/settings';
 
 @Component({
   selector: 'angular2-smart-table',

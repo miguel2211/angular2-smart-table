@@ -1,6 +1,6 @@
-import {Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
+import {Grid} from '../../../lib/grid';
 
 @Component({
   // TODO: @breaking-change rename the selector to angular2-st-thead-create-cancel in the next major version
