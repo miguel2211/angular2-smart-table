@@ -4,6 +4,7 @@ import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
 
 @Component({
+  // TODO: @breaking-change rename the selector to angular2-st-tbody-save-cancel in the next major version
   selector: 'angular2-st-tbody-create-cancel',
   template: `
     <a href="#" class="angular2-smart-action angular2-smart-action-edit-save"
@@ -12,7 +13,7 @@ import { Row } from '../../../lib/data-set/row';
         [innerHTML]="cancelButtonContent" (click)="onCancelEdit($event)"></a>
   `,
 })
-export class TbodyCreateCancelComponent implements OnChanges {
+export class TbodySaveCancelComponent implements OnChanges {
 
   @Input() grid!: Grid;
   @Input() row!: Row;
@@ -21,14 +22,14 @@ export class TbodyCreateCancelComponent implements OnChanges {
   cancelButtonContent!: string;
   saveButtonContent!: string;
 
-  onSave(event: any) {
+  onSave(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
 
     this.grid.save(this.row, this.editConfirm);
   }
 
-  onCancelEdit(event: any) {
+  onCancelEdit(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
 

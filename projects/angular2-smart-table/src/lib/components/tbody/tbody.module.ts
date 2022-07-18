@@ -5,14 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { CellModule } from '../cell/cell.module';
 
 import { NgxSmartTableTbodyComponent } from './tbody.component';
-import { TbodyCreateCancelComponent } from './cells/create-cancel.component';
+import { TbodySaveCancelComponent } from './cells/save-cancel.component';
 import { TbodyEditDeleteComponent } from './cells/edit-delete.component';
 import { TbodyCustomComponent } from './cells/custom.component';
 import { TbodyExpandRowComponent } from './cells/expand.component';
 import { TbodyCustomItemComponent } from './cells/custom-item.component';
 
 const TBODY_COMPONENTS = [
-  TbodyCreateCancelComponent,
+  TbodySaveCancelComponent,
   TbodyEditDeleteComponent,
   TbodyCustomComponent,
   TbodyExpandRowComponent,
