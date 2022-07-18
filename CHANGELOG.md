@@ -2,6 +2,10 @@
 
 This document lists the changes introduced by this fork.
 
+## Version 2.6.0
+
+* Fixes inline create row missing placeholder cell if multi-select column is present
+
 ## Version 2.5.0
 
 * Add new column settings `classHeader` and `classContent`

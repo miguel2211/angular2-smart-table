@@ -7,7 +7,7 @@ import { Cell } from '../../../lib/data-set/cell';
 @Component({
   selector: '[angular2-st-thead-form-row]',
   template: `
-      <td *ngIf=""></td>
+      <td *ngIf="isMultiSelectVisible"></td>
       <td  *ngIf="showActionColumnLeft"  class="angular2-smart-actions">
         <angular2-st-actions [grid]="grid" (create)="onCreate($event)"></angular2-st-actions>
       </td>
