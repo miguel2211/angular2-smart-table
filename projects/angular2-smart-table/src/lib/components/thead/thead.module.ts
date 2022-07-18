@@ -6,7 +6,7 @@ import { FilterModule } from '../filter/filter.module';
 import { CellModule } from '../cell/cell.module';
 
 import { NgxSmartTableTheadComponent } from './thead.component';
-import { ActionsComponent } from './cells/actions.component';
+import { TheadCreateCancelComponent } from './cells/create-cancel.component';
 import { ActionsTitleComponent } from './cells/actions-title.component';
 import { AddButtonComponent } from './cells/add-button.component';
 import { CheckboxSelectAllComponent } from './cells/checkbox-select-all.component';
@@ -18,7 +18,7 @@ import { TheadTitlesRowComponent } from './rows/thead-titles-row.component';
 import { DirectivesModule } from '../../directives/directives.module';
 
 const THEAD_COMPONENTS = [
-  ActionsComponent,
+  TheadCreateCancelComponent,
   ActionsTitleComponent,
   AddButtonComponent,
   CheckboxSelectAllComponent,
