@@ -5,23 +5,22 @@
     </td>
     <td *ngIf="!row.isInEditing && showActionColumnLeft" class="angular2-smart-actions">
 
-      <angular2-st-tbody-custom 
-        [grid]="grid" 
-        (custom)="custom.emit($event)" 
-        [row]="row" 
+      <angular2-st-tbody-custom
+        [grid]="grid"
+        (custom)="custom.emit($event)"
+        [row]="row"
         [source]="source">
       </angular2-st-tbody-custom>
-      
-      <angular2-st-tbody-expand 
+
+      <angular2-st-tbody-expand
           *ngIf="hasChildComponent"
-          [grid]="grid" 
-          [row]="row" 
+          [grid]="grid"
+          [row]="row"
           (onExpandRow)="onExpandRow.emit(row)">
       </angular2-st-tbody-expand>
 
       <angular2-st-tbody-edit-delete [grid]="grid"
                                 [deleteConfirm]="deleteConfirm"
-                                [editConfirm]="editConfirm"
                                 (edit)="edit.emit(row)"
                                 (delete)="delete.emit(row)"
                                 (editRowSelect)="editRowSelect.emit($event)"
@@ -30,7 +29,7 @@
       </angular2-st-tbody-edit-delete>
     </td>
     <td *ngIf="row.isInEditing && showActionColumnLeft"  class="angular2-smart-actions">
-      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></angular2-st-tbody-create-cancel>
+      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm" [editCancel]="editCancel"></angular2-st-tbody-create-cancel>
     </td>
     <td *ngFor="let cell of getVisibleCells(row.cells)">
       <angular2-smart-table-cell [cell]="cell"
@@ -39,28 +38,28 @@
                             [isNew]="false"
                             [mode]="mode"
                             [editConfirm]="editConfirm"
+                            [editCancel]="editCancel"
                             [inputClass]="editInputClass"
                             [isInEditing]="row.isInEditing">
       </angular2-smart-table-cell>
     </td>
 
     <td *ngIf="row.isInEditing && showActionColumnRight"  class="angular2-smart-actions">
-      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></angular2-st-tbody-create-cancel>
+      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm" [editCancel]="editCancel"></angular2-st-tbody-create-cancel>
     </td>
 
     <td *ngIf="!row.isInEditing && showActionColumnRight" class="angular2-smart-actions">
       <angular2-st-tbody-custom [grid]="grid" (custom)="custom.emit($event)" [row]="row" [source]="source"></angular2-st-tbody-custom>
 
-      <angular2-st-tbody-expand 
+      <angular2-st-tbody-expand
           *ngIf="hasChildComponent"
-          [grid]="grid" 
-          [row]="row" 
+          [grid]="grid"
+          [row]="row"
           (onExpandRow)="onExpandRow.emit(row)">
       </angular2-st-tbody-expand>
-      
+
       <angular2-st-tbody-edit-delete [grid]="grid"
                                 [deleteConfirm]="deleteConfirm"
-                                [editConfirm]="editConfirm"
                                 [row]="row"
                                 [source]="source"
                                 (edit)="edit.emit(row)"

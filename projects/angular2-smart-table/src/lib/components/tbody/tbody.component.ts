@@ -27,6 +27,7 @@ export class NgxSmartTableTbodyComponent implements AfterViewInit, OnDestroy {
   @Input() source!: DataSource;
   @Input() deleteConfirm!: EventEmitter<any>;
   @Input() editConfirm!: EventEmitter<any>;
+  @Input() editCancel!: EventEmitter<any>;
   @Input() rowClassFunction!: Function;
 
   @Output() save = new EventEmitter<any>();

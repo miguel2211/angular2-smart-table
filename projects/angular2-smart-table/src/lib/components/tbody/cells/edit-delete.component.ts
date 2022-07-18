@@ -20,7 +20,6 @@ export class TbodyEditDeleteComponent implements OnChanges {
   @Input() row!: Row;
   @Input() source!: DataSource;
   @Input() deleteConfirm!: EventEmitter<any>;
-  @Input() editConfirm!: EventEmitter<any>;
 
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();

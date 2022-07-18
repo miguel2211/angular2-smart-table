@@ -9,13 +9,15 @@ import { Cell } from '../../../lib/data-set/cell';
         <table-cell-custom-editor *ngSwitchCase="'custom'"
                                   [cell]="cell"
                                   [inputClass]="inputClass"
-                                  (edited)="edited.emit()">
-        </table-cell-custom-editor>
+                                  (edited)="edited.emit()"
+                                  (stopEditing)="stopEditing.emit()"
+        ></table-cell-custom-editor>
         <table-cell-default-editor *ngSwitchDefault
-                                  [cell]="cell"
-                                  [inputClass]="inputClass"
-                                  (edited)="edited.emit()">
-        </table-cell-default-editor>
+                                   [cell]="cell"
+                                   [inputClass]="inputClass"
+                                   (edited)="edited.emit()"
+                                   (stopEditing)="stopEditing.emit()"
+        ></table-cell-default-editor>
       </div>
     `,
 })
@@ -25,6 +27,7 @@ export class EditCellComponent implements OnInit {
   @Input() inputClass: string = '';
 
   @Output() edited = new EventEmitter<void>();
+  @Output() stopEditing = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.cell.resetValue();

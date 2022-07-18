@@ -10,8 +10,9 @@ import { Row } from '../../lib/data-set/row';
     <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
                           [inputClass]="inputClass"
-                          (edited)="onEdited()">
-    </table-cell-edit-mode>
+                          (edited)="onEdited()"
+                          (stopEditing)="onStopEditing()"
+    ></table-cell-edit-mode>
   `,
 })
 export class CellComponent {
@@ -19,6 +20,7 @@ export class CellComponent {
   @Input() grid!: Grid;
   @Input() row!: Row;
   @Input() editConfirm!: EventEmitter<any>;
+  @Input() editCancel!: EventEmitter<any>;
   @Input() createConfirm!: EventEmitter<any>;
   @Input() isNew!: boolean;
   @Input() cell!: Cell;
@@ -32,5 +34,14 @@ export class CellComponent {
     } else {
       this.grid.save(this.row, this.editConfirm);
     }
+  }
+
+  onStopEditing() {
+    this.row.isInEditing = false;
+    this.editCancel.emit({
+      data: this.row.getData(),
+      discardedData: this.row.getNewData(),
+      source: this.grid.source,
+    });
   }
 }

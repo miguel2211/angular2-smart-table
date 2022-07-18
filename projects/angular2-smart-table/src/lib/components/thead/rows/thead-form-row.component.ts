@@ -9,7 +9,7 @@ import {Cell} from '../../../lib/data-set/cell';
   template: `
     <td *ngIf="isMultiSelectVisible"></td>
     <td *ngIf="showActionColumnLeft" class="angular2-smart-actions">
-      <angular2-st-actions [grid]="grid" [createConfirm]="createConfirm"></angular2-st-actions>
+      <angular2-st-actions [grid]="grid" [createConfirm]="createConfirm" [createCancel]="createCancel"></angular2-st-actions>
     </td>
     <td *ngFor="let cell of getVisibleCells(grid.getNewRow().getCells())">
       <angular2-smart-table-cell
@@ -22,7 +22,7 @@ import {Cell} from '../../../lib/data-set/cell';
       ></angular2-smart-table-cell>
     </td>
     <td *ngIf="showActionColumnRight" class="angular2-smart-actions">
-      <angular2-st-actions [grid]="grid" [createConfirm]="createConfirm"></angular2-st-actions>
+      <angular2-st-actions [grid]="grid" [createConfirm]="createConfirm" [createCancel]="createCancel"></angular2-st-actions>
     </td>
   `,
 })
@@ -31,6 +31,7 @@ export class TheadFormRowComponent implements OnChanges {
   @Input() grid!: Grid;
   @Input() row!: Row;
   @Input() createConfirm!: EventEmitter<any>;
+  @Input() createCancel!: EventEmitter<any>;
 
   isMultiSelectVisible!: boolean;
   showActionColumnLeft!: boolean;

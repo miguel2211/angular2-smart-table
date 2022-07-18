@@ -4,6 +4,7 @@ This document lists the changes introduced by this fork.
 
 ## Version 2.6.0
 
+* Adds (editCancel) and (createCancel) events
 * Fixes inline create row missing placeholder cell if multi-select column is present
 * Fixes missing margin between create and cancel button in head form row
 

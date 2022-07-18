@@ -29,7 +29,9 @@ export class Angular2SmartTableComponent implements OnChanges, OnDestroy {
   @Output() custom = new EventEmitter<any>();
   @Output() deleteConfirm = new EventEmitter<any>();
   @Output() editConfirm = new EventEmitter<any>();
+  @Output() editCancel = new EventEmitter<any>();
   @Output() createConfirm = new EventEmitter<any>();
+  @Output() createCancel = new EventEmitter<any>();
   @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
   @Output() afterGridInit: EventEmitter<DataSet> = new EventEmitter<DataSet>();
 

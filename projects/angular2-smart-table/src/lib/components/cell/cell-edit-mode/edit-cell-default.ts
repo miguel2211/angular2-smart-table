@@ -11,6 +11,7 @@ export class EditCellDefault {
   @Input() inputClass: string = '';
 
   @Output() edited = new EventEmitter<void>();
+  @Output() stopEditing = new EventEmitter<void>();
 
   onEdited(): boolean {
     this.edited.emit();
@@ -18,7 +19,7 @@ export class EditCellDefault {
   }
 
   onStopEditing(): boolean {
-    this.cell.getRow().isInEditing = false;
+    this.stopEditing.emit();
     return false;
   }
 

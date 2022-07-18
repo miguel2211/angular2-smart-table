@@ -793,6 +793,19 @@
       </td>
     </tr>
     <tr>
+      <td>(createCancel)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>discardedData: <span class="highlight">Object</span> - entered data that is discarded by the cancel</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered when the Cancel button in inline mode is clicked.
+      </td>
+    </tr>
+    <tr>
       <td>(edit)</td>
       <td>
         event: <span class="highlight">Object</span>, consist of:
@@ -819,6 +832,20 @@
       <td>
         Triggered once a Save button clicked. Triggered only if table <strong>confirmSave = true and mode = inline</strong>.
         Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
+      <td>(editCancel)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - original row data</li>
+          <li>discardedData: <span class="highlight">Object</span> - edited data that is discarded by the cancel</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered when the Cancel button in inline mode is clicked.
       </td>
     </tr>
     <tr>

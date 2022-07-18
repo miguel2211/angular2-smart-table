@@ -16,6 +16,7 @@ export class TheadCreateCancelComponent implements OnChanges {
 
   @Input() grid!: Grid;
   @Input() createConfirm!: EventEmitter<any>;
+  @Input() createCancel!: EventEmitter<any>;
   @Output() create = new EventEmitter<any>();
 
   createButtonContent!: string;
@@ -31,6 +32,10 @@ export class TheadCreateCancelComponent implements OnChanges {
     event.preventDefault();
     event.stopPropagation();
     this.grid.createFormShown = false;
+    this.createCancel.emit({
+      discardedData: this.grid.getNewRow().getNewData(),
+      source: this.grid.source,
+    });
   }
 
   ngOnChanges() {
