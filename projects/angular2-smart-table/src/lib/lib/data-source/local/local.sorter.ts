@@ -44,8 +44,8 @@ export function defaultStringComparator(direction: number, left: string | null, 
  * @param right the right value
  */
 export function defaultComparator(direction: any, left: any, right: any) {
-  const leftIsNumeric = left == null || !isNaN(parseFloat(left));
-  const rightIsNumeric = right == null || !isNaN(parseFloat(right));
+  const leftIsNumeric = left == null || (!isNaN(parseFloat(left)) && !isNaN(left - 0));
+  const rightIsNumeric = right == null || (!isNaN(parseFloat(right)) && !isNaN(right - 0));
   const leftIsString = left == null || (typeof left === 'string');
   const rightIsString = right == null || (typeof right === 'string');
   if (leftIsNumeric && rightIsNumeric) {

@@ -9,6 +9,7 @@ This document lists the changes introduced by this fork.
 * Fixes that pressing escape in the Create Row renders this row dysfunctional
 * Fixes inline create row missing placeholder cell if multi-select column is present
 * Fixes missing margin between create and cancel button in head form row
+* Fixes sorting bug where strings that only start with a number were interpreted as numbers
 
 ## Version 2.5.0
 
