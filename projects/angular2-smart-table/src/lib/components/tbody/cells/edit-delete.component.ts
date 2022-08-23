@@ -4,15 +4,17 @@ import {Grid} from '../../../lib/grid';
 import {Row} from '../../../lib/data-set/row';
 import {DataSource} from '../../../lib/data-source/data-source';
 import {DeleteConfirmEvent, DeleteEvent, EditEvent} from '../../../lib/events';
+import {SecurityTrustType} from '../../../pipes/bypass-security-trust.pipe';
 
 @Component({
   selector: 'angular2-st-tbody-edit-delete',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a href="#" *ngIf="isActionEdit" class="angular2-smart-action angular2-smart-action-edit-edit"
-        [innerHTML]="editRowButtonContent" (click)="onEdit($event)"></a>
+       [innerHTML]="editRowButtonContent | bypassSecurityTrust: editButtonBypassSecurityTrust"
+       (click)="onEdit($event)"></a>
     <a href="#" *ngIf="isActionDelete" class="angular2-smart-action angular2-smart-action-delete-delete"
-        [innerHTML]="deleteRowButtonContent" (click)="onDelete($event)"></a>
+       [innerHTML]="deleteRowButtonContent | bypassSecurityTrust: deleteButtonBypassSecurityTrust" (click)="onDelete($event)"></a>
   `,
 })
 export class TbodyEditDeleteComponent implements OnChanges {
@@ -29,7 +31,9 @@ export class TbodyEditDeleteComponent implements OnChanges {
   isActionEdit!: boolean;
   isActionDelete!: boolean;
   editRowButtonContent!: string;
+  editButtonBypassSecurityTrust: SecurityTrustType = 'none';
   deleteRowButtonContent!: string;
+  deleteButtonBypassSecurityTrust: SecurityTrustType = 'none';
 
   onEdit(event: any) {
     event.preventDefault();
@@ -67,6 +71,8 @@ export class TbodyEditDeleteComponent implements OnChanges {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.editRowButtonContent = this.grid.getSetting('edit.editButtonContent');
+    this.editButtonBypassSecurityTrust = this.grid.settings.edit?.sanitizer?.bypassHtml ? 'html' : 'none';
     this.deleteRowButtonContent = this.grid.getSetting('delete.deleteButtonContent');
+    this.deleteButtonBypassSecurityTrust = this.grid.settings.delete?.sanitizer?.bypassHtml ? 'html' : 'none';
   }
 }

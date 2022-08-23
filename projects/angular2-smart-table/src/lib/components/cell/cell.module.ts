@@ -16,6 +16,7 @@ import {CustomViewComponent} from './cell-view-mode/custom-view.component';
 import {ViewCellComponent} from './cell-view-mode/view-cell.component';
 import {EditCellDefault} from './cell-edit-mode/edit-cell-default';
 import {DefaultEditor} from './cell-editors/default-editor';
+import {PipesModule} from '../../pipes/pipes.module';
 
 const CELL_COMPONENTS = [
   CellComponent,
@@ -34,11 +35,12 @@ const CELL_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    Ng2CompleterModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        Ng2CompleterModule,
+        PipesModule,
+    ],
   declarations: [
     ...CELL_COMPONENTS,
   ],

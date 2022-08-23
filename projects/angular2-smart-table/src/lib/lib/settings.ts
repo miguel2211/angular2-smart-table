@@ -37,6 +37,7 @@ export interface Filter {
 
 export interface Expand {
   expandRowButtonContent?: string;
+  sanitizer?: SanitizerSettings;
 }
 
 export interface IColumns {
@@ -54,11 +55,14 @@ export type ISortDirection = 'asc' | 'desc' | null; // null means: do not sort
 export type ColumnValuePrepareFunction = (cellValue: any, row: any, cell: Cell) => any;
 export type ColumnFilterFunction = (cellValue: any, searchString: string, rowData: any, cellName: string, row: any) => void;
 
-
+export interface SanitizerSettings {
+  bypassHtml?: boolean;
+}
 
 export interface IColumn {
   title?: string;
   type?: IColumnType;
+  sanitizer?: SanitizerSettings;
   classHeader?: string;
   classContent?: string;
   class?: string;
@@ -97,6 +101,7 @@ export interface Actions {
 
 export interface AddAction {
   inputClass?: string;
+  sanitizer?: SanitizerSettings,
   addButtonContent?: string;
   createButtonContent?: string;
   cancelButtonContent?: string;
@@ -105,6 +110,7 @@ export interface AddAction {
 
 export interface EditAction {
   inputClass?: string;
+  sanitizer?: SanitizerSettings,
   editButtonContent?: string;
   saveButtonContent?: string;
   cancelButtonContent?: string;
@@ -112,6 +118,7 @@ export interface EditAction {
 }
 
 export interface DeleteAction {
+  sanitizer?: SanitizerSettings,
   deleteButtonContent?: string;
   confirmDelete?: boolean;
 }

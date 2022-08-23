@@ -5,6 +5,7 @@ This document lists the changes introduced by this fork.
 ## Version 2.6.0
 
 * Adds (editCancel) and (createCancel) events
+* Add settings to bypass the Angular sanitizer (e.g. when svg content shall be displayed)
 * Fixes type confusion for (edit) and (delete) events and adds proper types to all editing events
 * Fixes that pressing escape in the Create Row renders this row dysfunctional
 * Fixes inline create row missing placeholder cell if multi-select column is present

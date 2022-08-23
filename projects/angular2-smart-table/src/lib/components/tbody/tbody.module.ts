@@ -10,6 +10,7 @@ import {TbodyEditDeleteComponent} from './cells/edit-delete.component';
 import {TbodyCustomComponent} from './cells/custom.component';
 import {TbodyExpandRowComponent} from './cells/expand.component';
 import {TbodyCustomItemComponent} from './cells/custom-item.component';
+import {PipesModule} from '../../pipes/pipes.module';
 
 const TBODY_COMPONENTS = [
   TbodySaveCancelComponent,
@@ -21,11 +22,12 @@ const TBODY_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    CellModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        CellModule,
+        PipesModule,
+    ],
   declarations: [
     ...TBODY_COMPONENTS,
   ],

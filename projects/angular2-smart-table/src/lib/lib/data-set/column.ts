@@ -1,4 +1,11 @@
-import {ColumnFilterFunction, ColumnValuePrepareFunction, IColumn, IColumnType, ISortDirection} from '../settings';
+import {
+  ColumnFilterFunction,
+  ColumnValuePrepareFunction,
+  IColumn,
+  IColumnType,
+  ISortDirection,
+  SanitizerSettings
+} from '../settings';
 import {DataSet} from './data-set';
 
 export class Column implements IColumn {
@@ -7,6 +14,7 @@ export class Column implements IColumn {
   title: string = '';
   hide: boolean = false;
   type?: IColumnType = IColumnType.Text;
+  sanitizer: SanitizerSettings = {};
   classHeader?: string = '';
   classContent?: string = '';
   width?: string = '';
@@ -80,6 +88,7 @@ export class Column implements IColumn {
     // the pattern is "X = lookup(key) ?? X" - this keeps the default value in case the setting is undefined
 
     this.placeholder = this.lookupSetting('placeholder');
+    this.sanitizer = this.lookupSetting('sanitizer') ?? {};
     this.title = this.lookupSetting('title') ?? this.title;
     this.classHeader = this.lookupSetting('classHeader', ['class']) ?? this.classHeader;
     this.classContent = this.lookupSetting('classContent', ['class']) ?? this.classContent;

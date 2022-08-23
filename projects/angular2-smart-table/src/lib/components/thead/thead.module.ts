@@ -16,6 +16,7 @@ import {TheadFitlersRowComponent} from './rows/thead-filters-row.component';
 import {TheadFormRowComponent} from './rows/thead-form-row.component';
 import {TheadTitlesRowComponent} from './rows/thead-titles-row.component';
 import {DirectivesModule} from '../../directives/directives.module';
+import {PipesModule} from '../../pipes/pipes.module';
 
 const THEAD_COMPONENTS = [
   TheadCreateCancelComponent,
@@ -31,13 +32,14 @@ const THEAD_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FilterModule,
-    CellModule,
-    DirectivesModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FilterModule,
+        CellModule,
+        DirectivesModule,
+        PipesModule
+    ],
   declarations: [
     ...THEAD_COMPONENTS,
   ],
